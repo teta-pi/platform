@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register your business — TETA+PI</title>
+  <meta name="description" content="Apply for early access to TETA+PI — the verification layer for the agent economy.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: #ffffff; scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; font-family: 'Trebuchet MS','Segoe UI','Helvetica Neue',sans-serif; color: #1A1035; }
+    ::selection { background: rgba(107,63,160,0.16); }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E2DCF0;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 28px;
+      height: 60px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: baseline; gap: 6px; text-decoration: none; user-select: none; }
+    .logo-t { font-size: 21px; font-weight: 600; color: #6B3FA0; line-height: 1; letter-spacing: -0.5px; }
+    .logo-plus { font-size: 15px; font-weight: 300; color: #1A1035; line-height: 1; }
+    .logo-pi { font-size: 19px; font-weight: 600; color: #E8640C; line-height: 1; }
+    .nav-back { font-size: 14px; color: #4A3F6B; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: #6B3FA0; }
+
+    /* Page */
+    main {
+      min-height: 100vh;
+      padding: 120px 28px 80px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #6B3FA0; margin-bottom: 22px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 700;
+      letter-spacing: -1.5px; line-height: 1.07;
+      color: #1A1035; margin: 0 0 20px;
+    }
+    .sub {
+      font-size: 17px; color: #4A3F6B; line-height: 1.6;
+      margin: 0 0 48px; max-width: 520px;
+    }
+
+    /* Benefits */
+    .benefits {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid #E2DCF0; margin-bottom: 52px;
+    }
+    .benefit {
+      display: flex; align-items: baseline; gap: 12px;
+      padding: 16px 20px; border-bottom: 1px solid #E2DCF0;
+      font-size: 14.5px; color: #4A3F6B; line-height: 1.5;
+    }
+    .benefit:last-child { border-bottom: none; }
+    .benefit-mark { color: #6B3FA0; font-size: 12px; flex: none; }
+
+    /* Form */
+    form { display: flex; flex-direction: column; gap: 22px; }
+
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    label {
+      font-size: 13px; font-weight: 600; color: #1A1035;
+      letter-spacing: 0.2px;
+    }
+    label span { color: #9088B0; font-weight: 400; }
+
+    input, select, textarea {
+      font-family: inherit; font-size: 15px; color: #1A1035;
+      background: #ffffff; border: 1px solid #C9B8E8;
+      border-radius: 4px; padding: 12px 14px;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      outline: none; width: 100%;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #6B3FA0;
+      box-shadow: 0 0 0 3px rgba(107,63,160,0.1);
+    }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.55; }
+    select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239088B0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 500px) { .row { grid-template-columns: 1fr; } }
+
+    .submit-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 52px; padding: 0 32px; border-radius: 4px;
+      font-size: 16px; font-weight: 600; color: #ffffff;
+      background: #6B3FA0; border: none; cursor: pointer;
+      transition: background .15s ease, transform .15s ease;
+      font-family: inherit; margin-top: 6px; align-self: flex-start;
+    }
+    .submit-btn:hover { background: #5A3488; transform: scale(1.02); }
+    .submit-btn:active { transform: scale(0.99); }
+    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .note {
+      font-size: 12.5px; color: #9088B0; line-height: 1.6;
+      margin-top: 4px;
+    }
+
+    /* Thank-you state */
+    .thankyou {
+      display: none;
+      padding: 40px 36px;
+      border: 1px solid #E2DCF0;
+      border-left: 2px solid #6B3FA0;
+      background: rgba(107,63,160,0.025);
+    }
+    .thankyou-icon { font-size: 28px; margin-bottom: 16px; }
+    .thankyou h2 {
+      font-size: 26px; font-weight: 700; letter-spacing: -0.6px;
+      color: #1A1035; margin: 0 0 12px;
+    }
+    .thankyou p { font-size: 16px; color: #4A3F6B; line-height: 1.6; margin: 0; }
+
+    /* Divider */
+    .divider { height: 1px; background: #E2DCF0; margin: 52px 0 40px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #E2DCF0;
+      padding: 40px 28px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 12.5px; color: #9088B0; }
+    .footer-mono {
+      font-family: ui-monospace,'SF Mono','Menlo',monospace;
+      font-size: 11px; color: #9088B0; letter-spacing: 0.4px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-t">Θ</span>
+        <span class="logo-plus">+</span>
+        <span class="logo-pi">π</span>
+      </a>
+      <a href="index.html" class="nav-back">← Back to main page</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="badge">Early access · Businesses</div>
+    <h1>Register your business</h1>
+    <p class="sub">Join the first cohort of verified businesses on TETA+PI. Free setup. Your verification status is never for sale.</p>
+
+    <div class="benefits">
+      <div class="benefit"><span class="benefit-mark">✓</span> Verified badge visible to AI agents via MCP protocol</div>
+      <div class="benefit"><span class="benefit-mark">✓</span> Official registry check (EU, UA, DE and growing)</div>
+      <div class="benefit"><span class="benefit-mark">✓</span> C2PA-signed media blocks — video, documents, live streams</div>
+      <div class="benefit"><span class="benefit-mark">✓</span> Free forever for the base tier</div>
+    </div>
+
+    <!-- FORM — submits to Formspree -->
+    <!-- TODO: replace YOUR_FORM_ID with your Formspree form ID from formspree.io -->
+    <form id="reg-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+      <input type="hidden" name="_subject" value="New business registration — TETA+PI">
+      <input type="hidden" name="_next" value="">
+
+      <div class="row">
+        <div class="field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" required placeholder="Acme GmbH">
+        </div>
+        <div class="field">
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected>Select…</option>
+            <option>Germany</option>
+            <option>Ukraine</option>
+            <option>Austria</option>
+            <option>Switzerland</option>
+            <option>Netherlands</option>
+            <option>France</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="email">Business email</label>
+          <input type="email" id="email" name="email" required placeholder="ceo@company.com">
+        </div>
+        <div class="field">
+          <label for="website">Website <span>(optional)</span></label>
+          <input type="url" id="website" name="website" placeholder="https://company.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="description">What does your business do? <span>(1–2 sentences)</span></label>
+        <textarea id="description" name="description" rows="3" placeholder="We grow organic strawberries and sell to restaurants across Germany…"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="usecase">Why do you need verification? <span>(optional)</span></label>
+        <textarea id="usecase" name="usecase" rows="2" placeholder="We want AI agents to trust our food quality certificates and source our products automatically…"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">Apply for early access →</button>
+      <p class="note">No credit card. We review manually and reply within 2 business days.</p>
+    </form>
+
+    <div class="thankyou" id="thankyou">
+      <div class="thankyou-icon">✓</div>
+      <h2>Application received</h2>
+      <p>We'll review your details and reply to your email within 2 business days. If you have questions in the meantime — <a href="mailto:hello@teta-pi.io" style="color:#6B3FA0;">hello@teta-pi.io</a></p>
+    </div>
+
+    <div class="divider"></div>
+    <p class="note" style="font-size:13.5px; color:#4A3F6B;">Questions? Write to <a href="mailto:hello@teta-pi.io" style="color:#6B3FA0; text-decoration:none;">hello@teta-pi.io</a> — we read every message.</p>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 TETA+PI · Open Protocol · MIT License</div>
+      <div class="footer-mono">#c2pa:verify · btc:ts:verified · θ+π:protocol:v1</div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('reg-form');
+    const btn = document.getElementById('submit-btn');
+    const thankyou = document.getElementById('thankyou');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          thankyou.style.display = 'block';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Apply for early access →';
+          alert('Something went wrong. Please try again or email hello@teta-pi.io');
+        }
+      } catch {
+        btn.disabled = false;
+        btn.textContent = 'Apply for early access →';
+        alert('Network error. Please email hello@teta-pi.io directly.');
+      }
+    });
+  </script>
+</body>
+</html>
