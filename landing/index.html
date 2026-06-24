@@ -38,7 +38,7 @@
         <a href="#protocol" style="font-size:14px; color:#4A3F6B; text-decoration:none;" style-hover="color:#6B3FA0;">Protocol</a>
         <a href="#businesses" style="font-size:14px; color:#4A3F6B; text-decoration:none;" style-hover="color:#6B3FA0;">For Businesses</a>
         <a href="#developers" style="font-size:14px; color:#4A3F6B; text-decoration:none;" style-hover="color:#6B3FA0;">For Devs</a>
-        <a href="onboarding.html" style="font-size:14px; font-weight:600; color:#ffffff; background:#6B3FA0; padding:10px 18px; border-radius:4px; text-decoration:none; transition:background .15s ease;" style-hover="background:#5A3488;">Register →</a>
+        <a href="https://app.tetapi.dev" style="font-size:14px; font-weight:600; color:#ffffff; background:#6B3FA0; padding:10px 18px; border-radius:4px; text-decoration:none; transition:background .15s ease;" style-hover="background:#5A3488;">Get verified →</a>
       </div>
       <div onClick="{{ toggleMenu }}" style="display:{{ hamburgerDisplay }}; flex-direction:column; gap:5px; cursor:pointer; padding:6px;">
         <span style="width:22px; height:1.5px; background:#1A1035; display:block;"></span>
@@ -55,7 +55,7 @@
       <a onClick="{{ closeMenu }}" href="#businesses" style="font-size:24px; font-weight:600; color:#1A1035; text-decoration:none;">For Businesses</a>
       <a onClick="{{ closeMenu }}" href="#developers" style="font-size:24px; font-weight:600; color:#1A1035; text-decoration:none;">For Devs</a>
       <a onClick="{{ closeMenu }}" href="#camera" style="font-size:24px; font-weight:600; color:#1A1035; text-decoration:none;">PI Camera</a>
-      <a href="onboarding.html" style="margin-top:10px; font-size:16px; font-weight:600; color:#ffffff; background:#6B3FA0; padding:14px 30px; border-radius:4px; text-decoration:none;">Register your business →</a>
+      <a href="https://app.tetapi.dev" style="margin-top:10px; font-size:16px; font-weight:600; color:#ffffff; background:#6B3FA0; padding:14px 30px; border-radius:4px; text-decoration:none;">Get verified →</a>
     </div>
   </sc-if>
 
@@ -66,12 +66,12 @@
     <div data-reveal style="max-width:840px;">
       <div style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:28px;">Trust infrastructure · Agent economy</div>
       <h1 style="font-size:{{ h1Size }}; font-weight:700; letter-spacing:-1.5px; line-height:1.06; color:#1A1035; margin:0 0 26px; text-wrap:balance;">The verification layer the agent economy was built without.</h1>
-      <p style="font-size:{{ subSize }}; color:#4A3F6B; line-height:1.6; margin:0 auto 38px; max-width:600px; text-wrap:pretty;">TETA+PI verifies businesses through official registries and C2PA-signed media. Agents trust the results.</p>
+      <p style="font-size:{{ subSize }}; color:#4A3F6B; line-height:1.6; margin:0 auto 38px; max-width:600px; text-wrap:pretty;">TETA+PI verifies businesses, journalists, and artists — through official registries, C2PA-signed media, and Bitcoin timestamps. AI agents find and trust the results.</p>
       <div style="display:flex; align-items:center; justify-content:center; gap:22px; flex-wrap:wrap;">
-        <a href="onboarding.html" style="font-size:16px; font-weight:600; color:#ffffff; background:#6B3FA0; height:48px; padding:0 26px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; transition:background .15s ease, transform .15s ease;" style-hover="background:#5A3488; transform:scale(1.02);">Register your business</a>
+        <a href="https://app.tetapi.dev" style="font-size:16px; font-weight:600; color:#ffffff; background:#6B3FA0; height:48px; padding:0 26px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; transition:background .15s ease, transform .15s ease;" style-hover="background:#5A3488; transform:scale(1.02);">Get verified</a>
         <a href="#protocol" style="font-size:15px; font-weight:600; color:#6B3FA0; text-decoration:none;" style-hover="color:#5A3488;">Read the protocol →</a>
       </div>
-      <div style="margin-top:20px; font-size:13px; color:#9088B0;">Free forever for consumers. &nbsp;·&nbsp; No credit card required for businesses.</div>
+      <div style="margin-top:20px; font-size:13px; color:#9088B0;">Free to get verified. &nbsp;·&nbsp; No credit card required.</div>
 
       <div style="margin-top:54px; max-width:520px; margin-left:auto; margin-right:auto; padding-top:26px; border-top:1px solid #E2DCF0;">
         <p style="font-size:15px; font-style:italic; color:#4A3F6B; line-height:1.6; margin:0 0 8px;">"As autonomy increases, trust cannot be assumed — it must be proven."</p>
@@ -164,8 +164,23 @@
   <!-- ============ S4 · FOR BUSINESSES ============ -->
   <section id="businesses" style="border-top:1px solid #E2DCF0; padding:{{ secPad }};">
     <div style="max-width:1120px; margin:0 auto;">
-      <div data-reveal style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:22px;">For businesses</div>
-      <h2 data-reveal style="font-size:{{ h2Size }}; font-weight:700; letter-spacing:-0.8px; line-height:1.12; color:#1A1035; margin:0 0 56px; max-width:760px; text-wrap:balance;">Prove what you are. Not just what you say.</h2>
+      <div data-reveal style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:22px;">For everyone</div>
+      <h2 data-reveal style="font-size:{{ h2Size }}; font-weight:700; letter-spacing:-0.8px; line-height:1.12; color:#1A1035; margin:0 0 40px; max-width:760px; text-wrap:balance;">Whoever you are. Prove it. Be found.</h2>
+
+      <div data-reveal style="display:grid; grid-template-columns:{{ audienceCols }}; gap:16px; margin-bottom:52px;">
+        <div style="padding:24px 22px; border:1px solid #E2DCF0; border-top:2px solid #6B3FA0;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:12px;">Businesses</div>
+          <p style="font-size:15px; color:#4A3F6B; line-height:1.6; margin:0;">Registry verified. When an agent searches for what you do — it finds you first.</p>
+        </div>
+        <div style="padding:24px 22px; border:1px solid #E2DCF0; border-top:2px solid #6B3FA0;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:12px;">Journalists &amp; Media</div>
+          <p style="font-size:15px; color:#4A3F6B; line-height:1.6; margin:0;">Verified identity and byline. Your work is provably yours — signed and timestamped.</p>
+        </div>
+        <div style="padding:24px 22px; border:1px solid #E2DCF0; border-top:2px solid #E8640C;">
+          <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8640C; margin-bottom:12px;">Artists &amp; Creators</div>
+          <p style="font-size:15px; color:#4A3F6B; line-height:1.6; margin:0;">C2PA-signed work. Prove it's human-made, not AI-generated. Verifiable at any point in time.</p>
+        </div>
+      </div>
 
       <div style="display:grid; grid-template-columns:{{ priceCols }}; gap:{{ priceGap }}; margin-bottom:44px; align-items:start;">
         <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
@@ -213,7 +228,7 @@
           </div>
           <pre style="margin:0; padding:20px 22px; font-family:ui-monospace,'SF Mono','Menlo',monospace; font-size:13px; line-height:1.7; color:#C9B8E8; overflow-x:auto;"><span style="color:#9088B0;">mcp_servers:</span>
   <span style="color:#9088B0;">- name:</span> <span style="color:#E8640C;">teta-pi</span>
-    <span style="color:#9088B0;">url:</span> <span style="color:#fff;">https://mcp.teta-pi.io/sse</span>
+    <span style="color:#9088B0;">url:</span> <span style="color:#fff;">https://mcp.tetapi.dev/sse</span>
     <span style="color:#9088B0;">auth:</span> <span style="color:#E8640C;">Bearer</span></pre>
         </div>
       </div>
@@ -272,7 +287,7 @@
     <div style="max-width:1120px; margin:0 auto;">
       <div data-reveal style="font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#6B3FA0; margin-bottom:22px;">Open protocol</div>
       <h2 data-reveal style="font-size:{{ h2Size }}; font-weight:700; letter-spacing:-0.8px; line-height:1.12; color:#1A1035; margin:0 0 20px; max-width:760px; text-wrap:balance;">We are not building an app. We are building the standard.</h2>
-      <p data-reveal style="font-size:{{ subSize }}; color:#4A3F6B; line-height:1.6; margin:0 0 52px; max-width:640px; text-wrap:pretty;">HTTP needed SSL. The internet needed DNS. The agent economy needs a trust protocol.</p>
+      <p data-reveal style="font-size:{{ subSize }}; color:#4A3F6B; line-height:1.6; margin:0 0 52px; max-width:640px; text-wrap:pretty;">θ+π is a cryptographic trust protocol: registry verification + C2PA media signing + Bitcoin timestamping — accessed by AI agents via MCP.</p>
 
       <div style="display:grid; grid-template-columns:{{ analogyCols }}; gap:16px; margin-bottom:30px;">
         <sc-for list="{{ analogies }}" as="an" hint-placeholder-count="3">
@@ -284,7 +299,7 @@
       </div>
 
       <div data-reveal style="text-align:center; padding:34px 20px; margin-bottom:48px;">
-        <div style="font-size:{{ h3Size }}; font-weight:700; color:#6B3FA0; letter-spacing:-0.5px;">π = Trust Protocol for Agents</div>
+        <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace; font-size:{{ h3Size }}; font-weight:700; color:#6B3FA0; letter-spacing:-0.5px;">θ+π: C2PA · BTC · Registry · MCP</div>
       </div>
 
       <div style="display:grid; grid-template-columns:{{ pubCols }}; gap:18px; margin-bottom:30px;">
@@ -347,7 +362,7 @@
       <h2 style="font-size:{{ h2Size }}; font-weight:700; letter-spacing:-0.8px; line-height:1.15; color:#1A1035; margin:0 0 14px; text-wrap:balance;">The agent economy needs a trust layer. Be the first to verify.</h2>
       <div style="font-size:14px; color:#9088B0; margin-bottom:30px;">Free for businesses. Free for consumers.</div>
       <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap;">
-        <a href="onboarding.html" style="font-size:16px; font-weight:600; color:#ffffff; background:{{ finalCtaBg }}; height:52px; padding:0 32px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; transition:transform .15s ease, filter .15s ease;" style-hover="transform:scale(1.02); filter:brightness(0.93);">Register your business</a>
+        <a href="https://app.tetapi.dev" style="font-size:16px; font-weight:600; color:#ffffff; background:{{ finalCtaBg }}; height:52px; padding:0 32px; border-radius:4px; text-decoration:none; display:inline-flex; align-items:center; transition:transform .15s ease, filter .15s ease;" style-hover="transform:scale(1.02); filter:brightness(0.93);">Get verified</a>
         <a href="#protocol" style="font-size:15px; font-weight:600; color:#6B3FA0; text-decoration:none;" style-hover="color:#5A3488;">Read the protocol →</a>
       </div>
     </div>
@@ -362,7 +377,7 @@
             <span style="font-size:13px; font-weight:300; color:#1A1035;">+</span>
             <span style="font-size:17px; font-weight:600; color:#E8640C;">π</span>
           </div>
-          <div style="font-size:13.5px; color:#4A3F6B; line-height:1.9;">teta-pi.io<br/>hello@teta-pi.io<br/><span style="color:#9088B0;">Seed Round 2026</span></div>
+          <div style="font-size:13.5px; color:#4A3F6B; line-height:1.9;">tetapi.dev<br/>hello@tetapi.dev<br/><span style="color:#9088B0;">Seed Round 2026</span></div>
         </div>
         <sc-for list="{{ footerCols }}" as="fc" hint-placeholder-count="3">
           <div>
@@ -505,10 +520,11 @@ class Component extends DCLogic {
       devCols: m ? '1fr' : '1fr 1.1fr',
       toolCols: tab ? (m ? '1fr' : 'repeat(2, 1fr)') : 'repeat(2, 1fr)',
       camCols: m ? '1fr' : 'repeat(2, 1fr)',
-      analogyCols: m ? '1fr' : 'repeat(3, 1fr)',
+      analogyCols: m ? '1fr' : tab ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
       pubCols: m ? '1fr' : 'repeat(2, 1fr)',
       footCols: m ? '1fr 1fr' : 'repeat(4, 1fr)',
       scrollHintDisplay: m ? 'none' : 'block',
+      audienceCols: m ? '1fr' : 'repeat(3, 1fr)',
       finalCtaBg: accent === 'violet' ? '#6B3FA0' : '#E8640C',
 
       stats: [
@@ -526,16 +542,16 @@ class Component extends DCLogic {
       ],
 
       steps: [
-        { num: '01', title: 'Company name', body: 'Enter your business name. TETA+PI runs an automatic registry check. Verified standing, confirmed.' },
-        { num: '02', title: 'Add blocks', body: 'Drop in anything — title, description, PI Camera media. No categories. No forms.' },
-        { num: '03', title: 'TETA+PI verifies', body: 'We structure the data, categorize the business, and rank it in agent search.' }
+        { num: '01', title: 'Create your page', body: 'Tell us who you are — business, journalist, artist. TETA+PI starts verification automatically.' },
+        { num: '02', title: 'Add evidence blocks', body: 'Drop in anything — documents, PI Camera media, certificates, live streams. No forms. No categories.' },
+        { num: '03', title: 'Get verified & found', body: 'We sign with C2PA, timestamp on Bitcoin. AI agents discover and trust you in search.' }
       ],
 
       blocks: [
-        { title: '50 hectare strawberry field', meta: 'video · PI Camera' },
-        { title: 'Organic certificate 2026', meta: 'document + process video' },
-        { title: 'Our kitchen, live', meta: 'live stream · API' },
-        { title: 'Authentic Neapolitan standards', meta: 'recipe + video proof' }
+        { title: 'Organic certificate 2026', meta: 'document · registry-linked' },
+        { title: 'Interview by Anna K., Reuters', meta: 'byline · C2PA signed' },
+        { title: '"Coastal Light" — original painting', meta: 'PI Camera · human-made proof' },
+        { title: 'Live production stream', meta: 'live stream · API · continuous' }
       ],
 
       levelDots: [
@@ -547,29 +563,30 @@ class Component extends DCLogic {
 
       plans: [
         { tier: 'Free', tierColor: '#9088B0', price: '€0', per: '', note: '', border: '#E2DCF0', leftBorder: '1px solid #E2DCF0', bg: '#ffffff', pad: '30px 28px',
-          features: ['Profile', 'Registry check', 'C2PA media', 'Search presence'],
-          cta: 'Register free', ctaHref: 'onboarding.html', ctaColor: '#ffffff', ctaBg: '#6B3FA0', ctaBorder: '#6B3FA0', ctaHover: 'background:#5A3488; border-color:#5A3488;' },
+          features: ['Verified profile', 'Registry check', 'C2PA media', 'Agent search presence'],
+          cta: 'Get verified free', ctaHref: 'https://app.tetapi.dev', ctaColor: '#ffffff', ctaBg: '#6B3FA0', ctaBorder: '#6B3FA0', ctaHover: 'background:#5A3488; border-color:#5A3488;' },
         { tier: 'Pro', tierColor: '#6B3FA0', price: '€21', per: '/ month', note: '€7 billed annually', border: '#E2DCF0', leftBorder: '2px solid #6B3FA0', bg: 'rgba(107,63,160,0.025)', pad: '34px 28px',
-          features: ['Bitcoin timestamps', 'Analytics', 'Direct offers', 'API for AI agents'],
-          cta: 'Start Pro', ctaHref: 'onboarding.html', ctaColor: '#6B3FA0', ctaBg: 'transparent', ctaBorder: '#6B3FA0', ctaHover: 'background:rgba(107,63,160,0.06);' },
+          features: ['Bitcoin timestamps', 'Analytics', 'Direct agent offers', 'API access'],
+          cta: 'Start Pro', ctaHref: 'https://app.tetapi.dev', ctaColor: '#6B3FA0', ctaBg: 'transparent', ctaBorder: '#6B3FA0', ctaHover: 'background:rgba(107,63,160,0.06);' },
         { tier: 'Enterprise', tierColor: '#9088B0', price: 'Custom', per: '', note: '', border: '#E2DCF0', leftBorder: '1px solid #E2DCF0', bg: '#ffffff', pad: '30px 28px',
           features: ['White-label', 'Delegated CA', 'Bulk verification', 'Custom methodology'],
-          cta: 'Contact us →', ctaHref: 'onboarding.html', ctaColor: '#6B3FA0', ctaBg: 'transparent', ctaBorder: '#E2DCF0', ctaHover: 'border-color:#C9B8E8;' }
+          cta: 'Contact us →', ctaHref: 'https://app.tetapi.dev', ctaColor: '#6B3FA0', ctaBg: 'transparent', ctaBorder: '#E2DCF0', ctaHover: 'border-color:#C9B8E8;' }
       ],
 
       tools: [
-        { name: 'search_verified_businesses', desc: 'Query the registry-attested index by intent and jurisdiction.' },
-        { name: 'get_business_profile', desc: 'Resolve a full verified profile with blocks and provenance.' },
-        { name: 'verify_business_claim', desc: 'Check a specific claim against signed evidence.' },
-        { name: 'get_verification_proof', desc: 'Return the C2PA + Bitcoin timestamp proof chain.' }
+        { name: 'search_verified_entities', desc: 'Query the verified index by intent, entity type, and jurisdiction.' },
+        { name: 'get_entity_profile', desc: 'Resolve a full verified profile with evidence blocks and provenance.' },
+        { name: 'verify_entity_claim', desc: 'Check a specific claim against C2PA-signed evidence.' },
+        { name: 'get_verification_proof', desc: 'Return the full C2PA + Bitcoin timestamp proof chain.' }
       ],
 
       pills: ['Mobile App', 'Web App', 'API', 'Open Source'],
 
       analogies: [
-        { name: 'Stripe', body: 'Not a bank — the infrastructure banks connect to.' },
-        { name: "Let's Encrypt", body: 'Not a browser — what browsers trust by default.' },
-        { name: 'Visa', body: 'Not a wallet — the verification layer wallets run on.' }
+        { name: 'C2PA Signing', body: 'Every document and media file gets a cryptographic signature from our Root CA. Machine-readable. Tamper-evident. Auditable by anyone.' },
+        { name: 'Bitcoin Timestamp', body: 'Verification events are anchored on Bitcoin. The timestamp cannot be altered — not by us, not by anyone.' },
+        { name: 'Registry Proof', body: 'Entity standing confirmed directly against government databases — EU, UA, DE, UK. Not self-reported. Cryptographically attested.' },
+        { name: 'MCP Interface', body: 'AI agents (Claude, GPT, custom) query verified data through the standard Model Context Protocol. One integration — all verified entities.' }
       ],
 
       publish: ['Protocol specification', 'Open-source library', 'API standard', 'Impressum format'],
@@ -583,7 +600,7 @@ class Component extends DCLogic {
 
       footerCols: [
         { head: 'Protocol', links: ['Whitepaper', 'GitHub', 'Open-source lib', 'C2PA standard'] },
-        { head: 'For Businesses', links: ['Register', 'Pricing', 'PI Camera'] },
+        { head: 'Get Verified', links: ['Businesses', 'Journalists', 'Artists', 'Pricing'] },
         { head: 'For Developers', links: ['API docs', 'MCP server', 'GitHub'] }
       ]
     };
