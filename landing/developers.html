@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Developers — TETA+PI</title>
+<meta name="description" content="Integrate TETA+PI into your AI agent in minutes. MCP server, REST API, open-source library. One connection — all verified entities.">
+<link rel="canonical" href="https://tetapi.dev/developers.html">
+<meta property="og:title" content="For Developers — TETA+PI">
+<meta property="og:description" content="MCP server · REST API · Open-source library. Connect your agent to the verification layer.">
+<meta property="og:site_name" content="TETA+PI">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ffffff; }
+  body { -webkit-font-smoothing: antialiased; font-family: 'Trebuchet MS','Segoe UI','Helvetica Neue',sans-serif; color: #1A1035; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid #E2DCF0;
+  }
+  .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 28px; height: 62px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: baseline; gap: 6px; text-decoration: none; }
+  .logo-t { font-size: 21px; font-weight: 600; color: #6B3FA0; }
+  .logo-plus { font-size: 15px; font-weight: 300; color: #1A1035; }
+  .logo-pi { font-size: 19px; font-weight: 600; color: #E8640C; }
+  .nav-back { font-size: 14px; color: #4A3F6B; text-decoration: none; transition: color .15s; }
+  .nav-back:hover { color: #6B3FA0; }
+
+  main { max-width: 1120px; margin: 0 auto; padding: 110px 28px 80px; }
+
+  .badge { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #6B3FA0; margin-bottom: 22px; }
+  h1 { font-size: clamp(32px,5vw,54px); font-weight: 700; letter-spacing: -1.5px; line-height: 1.07; color: #1A1035; margin: 0 0 22px; }
+  .sub { font-size: 18px; color: #4A3F6B; line-height: 1.65; margin: 0 0 60px; max-width: 580px; }
+
+  /* Quick links */
+  .quick-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 72px; }
+  .quick-card {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 24px 22px; border: 1px solid #E2DCF0; border-left: 2px solid #6B3FA0;
+    text-decoration: none; background: #fff; transition: border-color .15s, background .15s;
+  }
+  .quick-card:hover { border-color: #C9B8E8; background: rgba(107,63,160,0.025); }
+  .quick-icon { font-size: 20px; flex: none; margin-top: 2px; }
+  .quick-title { font-size: 15px; font-weight: 600; color: #1A1035; margin: 0 0 5px; }
+  .quick-desc { font-size: 13px; color: #9088B0; line-height: 1.5; margin: 0; }
+
+  /* Section */
+  .section { margin-bottom: 72px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #6B3FA0; margin-bottom: 18px; }
+  h2 { font-size: clamp(24px,3.5vw,38px); font-weight: 700; letter-spacing: -0.8px; line-height: 1.12; color: #1A1035; margin: 0 0 16px; }
+  .section-sub { font-size: 16px; color: #4A3F6B; line-height: 1.65; margin: 0 0 36px; max-width: 600px; }
+
+  /* Code block */
+  .code-block { background: #1A1035; border-radius: 6px; overflow: hidden; margin-bottom: 24px; }
+  .code-header { padding: 12px 18px; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; gap: 8px; }
+  .code-dot { width: 8px; height: 8px; border-radius: 50%; }
+  .code-filename { font-family: ui-monospace,'SF Mono','Menlo',monospace; font-size: 11px; color: rgba(255,255,255,0.3); margin-left: 4px; }
+  pre { margin: 0; padding: 22px 20px; font-family: ui-monospace,'SF Mono','Menlo',monospace; font-size: 13px; line-height: 1.75; overflow-x: auto; }
+  .c-k { color: #9088B0; }
+  .c-v { color: #C9B8E8; }
+  .c-s { color: #A8D4FF; }
+  .c-o { color: #E8640C; }
+  .c-g { color: #4ADE80; }
+  .c-cm { color: rgba(255,255,255,0.25); }
+
+  /* Tools table */
+  .tools-grid { display: flex; flex-direction: column; gap: 0; border: 1px solid #E2DCF0; }
+  .tool-row { display: grid; grid-template-columns: 200px 1fr; gap: 0; border-bottom: 1px solid #E2DCF0; }
+  .tool-row:last-child { border-bottom: none; }
+  .tool-name { font-family: ui-monospace,'SF Mono','Menlo',monospace; font-size: 13px; color: #6B3FA0; padding: 16px 20px; background: rgba(107,63,160,0.025); border-right: 1px solid #E2DCF0; }
+  .tool-desc { font-size: 14px; color: #4A3F6B; padding: 16px 20px; line-height: 1.5; }
+  @media (max-width: 600px) {
+    .tool-row { grid-template-columns: 1fr; }
+    .tool-name { border-right: none; border-bottom: 1px solid #E2DCF0; }
+  }
+
+  /* REST endpoints */
+  .endpoint { display: flex; align-items: baseline; gap: 12px; padding: 14px 18px; border-bottom: 1px solid #E2DCF0; }
+  .endpoint:last-child { border-bottom: none; }
+  .method { font-family: ui-monospace,'SF Mono','Menlo',monospace; font-size: 11px; font-weight: 700; color: #4ADE80; background: rgba(74,222,128,0.1); padding: 3px 8px; border-radius: 3px; flex: none; }
+  .path { font-family: ui-monospace,'SF Mono','Menlo',monospace; font-size: 13px; color: #1A1035; }
+  .ep-desc { font-size: 13px; color: #9088B0; margin-left: auto; }
+  @media (max-width: 600px) { .ep-desc { display: none; } }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid #E2DCF0; margin: 0 0 72px; }
+
+  footer { border-top: 1px solid #E2DCF0; padding: 40px 28px; }
+  .footer-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-copy { font-size: 12.5px; color: #9088B0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-t">Θ</span>
+      <span class="logo-plus">+</span>
+      <span class="logo-pi">π</span>
+    </a>
+    <a href="index.html" class="nav-back">← Back to TETA+PI</a>
+  </div>
+</nav>
+
+<main>
+  <div class="badge">For developers & agents</div>
+  <h1>Connect once.<br>Verify anything.</h1>
+  <p class="sub">TETA+PI exposes verified entities via MCP (Model Context Protocol) and REST API. Your AI agent can verify businesses, journalists, and artists in one tool call.</p>
+
+  <div class="quick-grid">
+    <a href="#mcp" class="quick-card">
+      <span class="quick-icon">⚡</span>
+      <div>
+        <div class="quick-title">MCP Server</div>
+        <p class="quick-desc">For Claude, GPT, custom agents. Plug-and-play via SSE or stdio.</p>
+      </div>
+    </a>
+    <a href="#api" class="quick-card">
+      <span class="quick-icon">🔌</span>
+      <div>
+        <div class="quick-title">REST API</div>
+        <p class="quick-desc">Standard JSON/HTTPS endpoints. Bearer token auth.</p>
+      </div>
+    </a>
+    <a href="https://github.com/tetapi" target="_blank" rel="noopener" class="quick-card" style="border-left-color:#E8640C;">
+      <span class="quick-icon">⎔</span>
+      <div>
+        <div class="quick-title">GitHub</div>
+        <p class="quick-desc">Open-source library · MIT license · protocol spec</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- MCP -->
+  <div class="section" id="mcp">
+    <div class="section-label">MCP server</div>
+    <h2>For AI agents — one config line.</h2>
+    <p class="section-sub">Any MCP-compatible agent (Claude, GPT, custom) connects via SSE or stdio. Authenticated with Bearer token from your TETA+PI account.</p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#6B3FA0;"></div>
+        <div class="code-dot" style="background:rgba(255,255,255,0.15);"></div>
+        <div class="code-dot" style="background:rgba(255,255,255,0.15);"></div>
+        <span class="code-filename">claude_desktop_config.json</span>
+      </div>
+      <pre><span class="c-k">"mcpServers"</span>: {
+  <span class="c-k">"teta-pi"</span>: {
+    <span class="c-k">"url"</span>:    <span class="c-s">"https://mcp.tetapi.dev/sse"</span>,
+    <span class="c-k">"apiKey"</span>: <span class="c-s">"YOUR_API_KEY"</span>
+  }
+}</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#6B3FA0;"></div>
+        <span class="code-filename">agent.config.yaml</span>
+      </div>
+      <pre><span class="c-k">mcp_servers:</span>
+  <span class="c-k">- name:</span>   <span class="c-o">teta-pi</span>
+    <span class="c-k">url:</span>    <span class="c-v">https://mcp.tetapi.dev/sse</span>
+    <span class="c-k">auth:</span>   <span class="c-o">Bearer</span> <span class="c-v">$TETA_API_KEY</span></pre>
+    </div>
+
+    <div class="section-label" style="margin-top:48px;">MCP tools</div>
+    <div class="tools-grid">
+      <div class="tool-row">
+        <div class="tool-name">teta_search</div>
+        <div class="tool-desc">Search verified entities by name, domain, type, country, or level. Returns IDs for further queries.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-name">teta_verify_entity</div>
+        <div class="tool-desc">Full verified profile — registry attestation, C2PA blocks, Bitcoin proofs. Takes entity UUID.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-name">teta_verify_claim</div>
+        <div class="tool-desc">Check a specific claim against verified evidence blocks. Returns evidence + trust level.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-name">teta_verify_endpoint</div>
+        <div class="tool-desc">Verify an agent endpoint — active, belongs to entity, data consistent. Use before routing.</div>
+      </div>
+      <div class="tool-row">
+        <div class="tool-name">teta_get_proof</div>
+        <div class="tool-desc">Raw cryptographic proof chain — registry hash, C2PA manifests, Bitcoin OTS. Machine-verifiable.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- REST API -->
+  <div class="section" id="api">
+    <div class="section-label">REST API</div>
+    <h2>Direct HTTP endpoints.</h2>
+    <p class="section-sub">Base URL: <code style="font-family:monospace;background:#F2EDF9;padding:2px 8px;border-radius:3px;font-size:14px;">https://api.tetapi.dev/v1</code> — Bearer token from your account settings.</p>
+
+    <div style="border:1px solid #E2DCF0; margin-bottom:36px;">
+      <div class="endpoint"><span class="method">GET</span><span class="path">/entities/search?q=&type=&country=&level=</span><span class="ep-desc">Search entities</span></div>
+      <div class="endpoint"><span class="method">GET</span><span class="path">/entities/{id}</span><span class="ep-desc">Full profile</span></div>
+      <div class="endpoint"><span class="method">GET</span><span class="path">/entities/{id}/proof</span><span class="ep-desc">Cryptographic proof</span></div>
+      <div class="endpoint"><span class="method">POST</span><span class="path">/entities/{id}/verify-claim</span><span class="ep-desc">Verify a claim</span></div>
+      <div class="endpoint"><span class="method">POST</span><span class="path">/endpoints/verify</span><span class="ep-desc">Verify agent endpoint</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#6B3FA0;"></div>
+        <span class="code-filename">example — search + verify</span>
+      </div>
+      <pre><span class="c-cm"># Search for a verified entity</span>
+curl https://api.tetapi.dev/v1/entities/search \
+  -H <span class="c-s">"Authorization: Bearer $TETA_API_KEY"</span> \
+  -G --data-urlencode <span class="c-s">"q=organic bakery Berlin"</span> \
+     --data-urlencode <span class="c-s">"level=full"</span>
+
+<span class="c-cm"># Response</span>
+{
+  <span class="c-k">"results"</span>: [{
+    <span class="c-k">"id"</span>:                 <span class="c-s">"a7f3b9c2-..."</span>,
+    <span class="c-k">"name"</span>:               <span class="c-s">"GreenFarm GmbH"</span>,
+    <span class="c-k">"verification_level"</span>: <span class="c-g">"full"</span>,
+    <span class="c-k">"entity_type"</span>:        <span class="c-s">"business"</span>,
+    <span class="c-k">"country"</span>:            <span class="c-s">"DE"</span>,
+    <span class="c-k">"agent_endpoint"</span>:     <span class="c-s">"https://agents.greenfarm.de"</span>
+  }]
+}</pre>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- GitHub / Open Source -->
+  <div class="section">
+    <div class="section-label">Open source</div>
+    <h2>Build on the protocol.</h2>
+    <p class="section-sub">The verification library, protocol spec, and MCP server reference implementation are MIT-licensed. Fork it, embed it, build on it.</p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px;">
+      <a href="https://github.com/tetapi/tetapi-lib" target="_blank" rel="noopener" style="padding:22px 20px; border:1px solid #E2DCF0; text-decoration:none;">
+        <div style="font-family:monospace; font-size:12px; color:#9088B0; margin-bottom:10px;">github.com/tetapi/tetapi-lib</div>
+        <div style="font-size:15px; font-weight:600; color:#1A1035; margin-bottom:6px;">tetapi-lib</div>
+        <div style="font-size:13.5px; color:#4A3F6B; line-height:1.5;">Core verification library — C2PA signing, BTC timestamp, registry query. Use independently of the platform.</div>
+      </a>
+      <a href="https://github.com/tetapi/mcp-server" target="_blank" rel="noopener" style="padding:22px 20px; border:1px solid #E2DCF0; text-decoration:none;">
+        <div style="font-family:monospace; font-size:12px; color:#9088B0; margin-bottom:10px;">github.com/tetapi/mcp-server</div>
+        <div style="font-size:15px; font-weight:600; color:#1A1035; margin-bottom:6px;">mcp-server</div>
+        <div style="font-size:13.5px; color:#4A3F6B; line-height:1.5;">Reference MCP server implementation. Run your own, extend the protocol, contribute tools.</div>
+      </a>
+      <a href="https://github.com/tetapi/protocol" target="_blank" rel="noopener" style="padding:22px 20px; border:1px solid #E2DCF0; text-decoration:none;">
+        <div style="font-family:monospace; font-size:12px; color:#9088B0; margin-bottom:10px;">github.com/tetapi/protocol</div>
+        <div style="font-size:15px; font-weight:600; color:#1A1035; margin-bottom:6px;">protocol spec</div>
+        <div style="font-size:13.5px; color:#4A3F6B; line-height:1.5;">The θ+π trust protocol specification. C2PA + BTC + Registry + MCP — formally defined.</div>
+      </a>
+    </div>
+  </div>
+
+  <div style="padding:28px 30px; border-left:2px solid #6B3FA0; background:rgba(107,63,160,0.025); margin-bottom:0;">
+    <p style="font-size:16px; color:#1A1035; line-height:1.6; margin:0;">Questions? Write to <a href="mailto:hello@tetapi.dev" style="color:#6B3FA0; text-decoration:none;">hello@tetapi.dev</a> — or open an issue on <a href="https://github.com/tetapi" target="_blank" rel="noopener" style="color:#6B3FA0; text-decoration:none;">GitHub</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">© 2026 TETA+PI · Open Protocol · MIT License</div>
+    <a href="index.html" style="font-size:13px; color:#9088B0; text-decoration:none;">← tetapi.dev</a>
+  </div>
+</footer>
+
+</body>
+</html>
