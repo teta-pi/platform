@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Agents — TETA+PI</title>
+<meta name="description" content="AI agents can query verified entities via TETA+PI MCP server. Search, verify, and get cryptographic proof — in one tool call.">
+<link rel="canonical" href="https://tetapi.dev/for-agents.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:linear-gradient(180deg,#EEF2FC 0%,#FBFAF4 45%,#EDF1FB 100%);background-attachment:fixed}
+body{-webkit-font-smoothing:antialiased;font-family:'Manrope','Trebuchet MS','Segoe UI',sans-serif;color:#1A1035}
+*,*::before,*::after{box-sizing:border-box}
+::selection{background:rgba(91,69,201,.20)}
+a{color:inherit;text-decoration:none}
+@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,-30px) scale(1.08)}}
+@keyframes floatB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,40px) scale(1.12)}}
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .5s ease-out,transform .5s ease-out}
+[data-reveal].in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){[data-reveal]{opacity:1!important;transform:none!important;transition:none!important}}
+.nav{position:sticky;top:18px;z-index:40;margin:18px auto 0;max-width:1120px;padding:0 20px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:11px 12px 11px 22px;border-radius:22px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 30px rgba(45,55,120,.10),inset 0 1px 0 rgba(255,255,255,.8);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%)}
+.nav-logo{display:flex;align-items:baseline;gap:6px}
+.nav-logo .theta{font-size:21px;font-weight:600;color:#5B45C9;line-height:1;letter-spacing:-.5px}
+.nav-logo .plus{font-size:15px;font-weight:300;color:#1A1035;line-height:1}
+.nav-logo .pi{font-size:19px;font-weight:600;color:#F59A2E;line-height:1}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{font-size:14px;color:#4A3F6B;font-weight:500}
+.nav-links a:hover{color:#5B45C9}
+.nav-cta{font-size:14px;font-weight:600;color:#fff;background:linear-gradient(180deg,#6E58D6,#5B45C9);padding:10px 18px;border-radius:16px;box-shadow:0 4px 14px rgba(91,69,201,.34),inset 0 1px 0 rgba(255,255,255,.3)}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.nav-hamburger span{width:22px;height:1.5px;background:#1A1035;display:block}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:49;background:rgba(238,242,252,.97);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);flex-direction:column;align-items:center;justify-content:center;gap:34px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:22px;font-weight:600;color:#1A1035}
+.mobile-menu .close-btn{position:absolute;top:24px;right:24px;font-size:28px;color:#1A1035;background:none;border:none;cursor:pointer;padding:8px}
+.section{max-width:1120px;margin:0 auto;padding:56px 32px}
+.glass{background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7);box-shadow:0 12px 40px rgba(45,55,120,.10),inset 0 1px 0 rgba(255,255,255,.85);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border-radius:18px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#5B45C9;margin-bottom:16px}
+.btn-primary{display:inline-flex;align-items:center;height:52px;padding:0 30px;font-size:16px;font-weight:600;color:#fff;background:linear-gradient(180deg,#6E58D6,#5B45C9);border-radius:18px;box-shadow:0 8px 24px rgba(91,69,201,.34),inset 0 1px 0 rgba(255,255,255,.3)}
+.btn-ghost{display:inline-flex;align-items:center;height:52px;padding:0 24px;font-size:16px;font-weight:600;color:#3A2C5C;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.7);border-radius:18px;box-shadow:0 4px 16px rgba(45,55,120,.08),inset 0 1px 0 rgba(255,255,255,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid-foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+.code-block{background:rgba(26,16,53,.92);border-radius:16px;padding:28px 28px;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:13px;line-height:1.75;overflow-x:auto}
+.tool-card{padding:22px 24px;border-radius:14px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.7)}
+@media(max-width:900px){.grid-dev{grid-template-columns:1fr}}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .grid-2{grid-template-columns:1fr}
+  .grid-foot{grid-template-columns:1fr 1fr}
+  .section{padding:48px 20px}
+  .code-block{font-size:11.5px;padding:20px 18px}
+}
+</style>
+</head>
+<body>
+
+<div style="position:fixed;top:-140px;left:-130px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(91,69,201,.18),transparent 68%);filter:blur(32px);animation:floatA 26s ease-in-out infinite;pointer-events:none;z-index:0"></div>
+<div style="position:fixed;bottom:-180px;right:-160px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(245,154,46,.16),transparent 68%);filter:blur(36px);animation:floatB 30s ease-in-out infinite;pointer-events:none;z-index:0"></div>
+
+<div style="position:relative;z-index:1">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="theta">Θ</span>
+      <span class="plus">+</span>
+      <span class="pi">π</span>
+    </a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/for-businesses.html">For Businesses</a>
+      <a href="/for-agents.html" style="color:#5B45C9;font-weight:600">For Agents</a>
+      <a href="/registries.html">Registries</a>
+      <a href="https://app.tetapi.dev/claim" class="nav-cta">Start →</a>
+    </div>
+    <button class="nav-hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="close-btn" onclick="document.getElementById('mobile-menu').classList.remove('open')">×</button>
+  <a href="/about.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+  <a href="/for-businesses.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Businesses</a>
+  <a href="/for-agents.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Agents</a>
+  <a href="/registries.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Registries</a>
+  <a href="https://app.tetapi.dev/claim" style="font-size:16px;font-weight:600;color:#fff;background:linear-gradient(180deg,#6E58D6,#5B45C9);padding:14px 30px;border-radius:16px">Start →</a>
+</div>
+
+<!-- HERO -->
+<section class="section" style="padding-top:96px;padding-bottom:64px;text-align:center">
+  <div class="eyebrow" data-reveal>MCP Protocol · REST API</div>
+  <h1 data-reveal style="font-size:clamp(34px,5vw,60px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:0 auto 24px;max-width:760px;text-wrap:balance">
+    Query verified entities.<br>In one tool call.
+  </h1>
+  <p data-reveal style="font-size:clamp(16px,2vw,19px);color:#5A4F78;max-width:580px;margin:0 auto 40px;line-height:1.6">
+    TETA+PI exposes a native MCP server. Connect your agent once — then search, verify, and fetch cryptographic proof without leaving your reasoning loop.
+  </p>
+  <div data-reveal style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a href="https://api.tetapi.dev/docs" class="btn-primary">View API docs →</a>
+    <a href="https://github.com/teta-pi" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="section" style="padding-top:0">
+  <div data-reveal style="margin-bottom:24px">
+    <div class="eyebrow">Quick start</div>
+    <h2 style="font-size:clamp(20px,2.5vw,28px);font-weight:700;letter-spacing:-.02em;margin:0">Connect via MCP</h2>
+  </div>
+  <div class="code-block" data-reveal>
+    <div style="color:#9088B0;margin-bottom:16px">// Add to your MCP config (Claude Desktop / any MCP client)</div>
+    <div style="color:#C9B8E8">{</div>
+    <div style="padding-left:20px;color:#9088B0">"mcpServers": {</div>
+    <div style="padding-left:40px;color:#9088B0">"teta-pi": {</div>
+    <div style="padding-left:60px;color:#9088B0">"command": <span style="color:#7FE3A4">"npx"</span>,</div>
+    <div style="padding-left:60px;color:#9088B0">"args": [<span style="color:#7FE3A4">"-y"</span>, <span style="color:#7FE3A4">"@teta-pi/mcp-server"</span>]</div>
+    <div style="padding-left:40px;color:#9088B0">}</div>
+    <div style="padding-left:20px;color:#9088B0">}</div>
+    <div style="color:#C9B8E8">}</div>
+    <div style="height:1px;background:rgba(255,255,255,.08);margin:20px 0"></div>
+    <div style="color:#9088B0">// Or via REST</div>
+    <div style="color:#7FE3A4">GET https://api.tetapi.dev/api/v1/search?q=GreenFarm+GmbH&verified=true</div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section" style="padding-top:0">
+  <div data-reveal style="margin-bottom:32px">
+    <div class="eyebrow">Available tools</div>
+    <h2 style="font-size:clamp(20px,2.5vw,28px);font-weight:700;letter-spacing:-.02em;margin:0">4 MCP tools, ready to use</h2>
+  </div>
+  <div class="grid-2" style="gap:14px">
+    <div class="tool-card" data-reveal>
+      <div style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5B45C9;margin-bottom:10px">teta_search</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.6">Search verified entities by name, domain, or type. Supports filters: country, entity type, trust level.</div>
+    </div>
+    <div class="tool-card" data-reveal>
+      <div style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5B45C9;margin-bottom:10px">teta_verify_entity</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.6">Verify a specific entity by ID or handle. Returns full verification status, registry references, and trust level.</div>
+    </div>
+    <div class="tool-card" data-reveal>
+      <div style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5B45C9;margin-bottom:10px">teta_verify_endpoint</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.6">Verify a domain or API endpoint. Checks TETA+PI registration, C2PA signing key, and MCP reachability.</div>
+    </div>
+    <div class="tool-card" data-reveal>
+      <div style="font-family:ui-monospace,monospace;font-size:13px;font-weight:600;color:#5B45C9;margin-bottom:10px">teta_get_proof</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.6">Get cryptographic proof for a verification. Returns Bitcoin timestamp, C2PA manifest, and registry attestation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST LEVELS -->
+<section class="section" style="padding-top:0">
+  <div data-reveal style="margin-bottom:32px">
+    <div class="eyebrow">Response format</div>
+    <h2 style="font-size:clamp(20px,2.5vw,28px);font-weight:700;letter-spacing:-.02em;margin:0">Trust levels returned</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="glass" style="padding:22px 26px;display:flex;align-items:center;gap:20px" data-reveal>
+      <div style="flex-shrink:0;width:60px;height:60px;border-radius:14px;background:rgba(127,227,164,.15);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;color:#2D7A2A;text-align:center;line-height:1.3">FULL</div>
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:5px">Full verification</div>
+        <div style="font-size:14px;color:#5A4F78;line-height:1.5">Registry attested + C2PA content signed + Bitcoin timestamp confirmed. Highest trust — all three layers present.</div>
+      </div>
+    </div>
+    <div class="glass" style="padding:22px 26px;display:flex;align-items:center;gap:20px" data-reveal>
+      <div style="flex-shrink:0;width:60px;height:60px;border-radius:14px;background:rgba(91,69,201,.1);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;color:#5B45C9;text-align:center;line-height:1.3">STD</div>
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:5px">Standard verification</div>
+        <div style="font-size:14px;color:#5A4F78;line-height:1.5">Registry attested + C2PA signed. Bitcoin timestamp pending or not applicable. Strong identity proof.</div>
+      </div>
+    </div>
+    <div class="glass" style="padding:22px 26px;display:flex;align-items:center;gap:20px" data-reveal>
+      <div style="flex-shrink:0;width:60px;height:60px;border-radius:14px;background:rgba(245,154,46,.12);display:flex;align-items:center;justify-content:center;font-family:ui-monospace,monospace;font-size:11px;font-weight:700;color:#B8720A;text-align:center;line-height:1.3">BASIC</div>
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:5px">Basic verification</div>
+        <div style="font-size:14px;color:#5A4F78;line-height:1.5">Registry lookup completed. Entity exists and is registered. C2PA and Bitcoin layers not yet applied.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-bottom:96px;text-align:center" data-reveal>
+  <div class="glass" style="padding:56px 40px;max-width:640px;margin:0 auto">
+    <h2 style="font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.025em;margin:0 0 14px">Ready to integrate?</h2>
+    <p style="font-size:16px;color:#5A4F78;margin:0 0 32px;line-height:1.55">Full API reference, SDKs, and MCP server source code available on GitHub.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="https://api.tetapi.dev/docs" class="btn-primary">API Docs →</a>
+      <a href="https://github.com/teta-pi" target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="max-width:1120px;margin:0 auto;padding:40px 32px 60px">
+  <div class="grid-foot" style="margin-bottom:40px">
+    <div>
+      <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:14px">
+        <span style="font-size:18px;font-weight:600;color:#5B45C9">Θ</span>
+        <span style="font-size:13px;font-weight:300">+</span>
+        <span style="font-size:16px;font-weight:600;color:#F59A2E">π</span>
+      </div>
+      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TetaPi GmbH<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
+    </div>
+    <div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Company</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="/about.html" style="font-size:14px;color:#4A3F6B">About</a>
+        <a href="/how-it-works.html" style="font-size:14px;color:#4A3F6B">How it Works</a>
+        <a href="/registries.html" style="font-size:14px;color:#4A3F6B">Registries</a>
+        <a href="https://github.com/teta-pi" target="_blank" rel="noopener" style="font-size:14px;color:#4A3F6B">GitHub</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Use Cases</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="/for-businesses.html" style="font-size:14px;color:#4A3F6B">For Businesses</a>
+        <a href="/for-agents.html" style="font-size:14px;color:#4A3F6B">For Agents</a>
+        <a href="https://app.tetapi.dev/claim" style="font-size:14px;color:#4A3F6B">Start</a>
+        <a href="https://app.tetapi.dev" style="font-size:14px;color:#4A3F6B">Search entities</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Resources</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://api.tetapi.dev/docs" style="font-size:14px;color:#4A3F6B">API Docs</a>
+        <a href="https://app.tetapi.dev/settings" style="font-size:14px;color:#4A3F6B">Settings</a>
+        <a href="/privacy.html" style="font-size:14px;color:#4A3F6B">Privacy</a>
+        <a href="/terms.html" style="font-size:14px;color:#4A3F6B">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(26,16,53,.08)">
+    <div style="font-size:12.5px;color:#9088B0">© 2026 TetaPi GmbH · Open Protocol · MIT License</div>
+    <div style="display:flex;gap:20px">
+      <a href="/privacy.html" style="font-size:12.5px;color:#9088B0">Privacy</a>
+      <a href="/terms.html" style="font-size:12.5px;color:#9088B0">Terms</a>
+      <a href="https://api.tetapi.dev/docs" style="font-size:12.5px;color:#9088B0">API</a>
+      <a href="https://app.tetapi.dev/settings" style="font-size:12.5px;color:#9088B0">Settings</a>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script>
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  const io = new IntersectionObserver((e) => {
+    e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+}
+</script>
+</body>
+</html>

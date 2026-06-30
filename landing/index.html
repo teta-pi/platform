@@ -120,10 +120,10 @@ a{color:inherit;text-decoration:none}
       <span class="pi">π</span>
     </a>
     <div class="nav-links">
-      <a href="#protocol">Protocol</a>
-      <a href="#who">For Businesses</a>
-      <a href="#developers">For Devs</a>
-      <a href="#camera">PI Camera</a>
+      <a href="/about.html">About</a>
+      <a href="/for-businesses.html">For Businesses</a>
+      <a href="/for-agents.html">For Agents</a>
+      <a href="/registries.html">Registries</a>
       <a href="https://app.tetapi.dev/claim" class="nav-cta">Start →</a>
     </div>
     <button class="nav-hamburger" onclick="document.getElementById('mobile-menu').classList.add('open')" aria-label="Menu">
@@ -135,10 +135,10 @@ a{color:inherit;text-decoration:none}
 <!-- mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
   <button class="close-btn" onclick="document.getElementById('mobile-menu').classList.remove('open')" aria-label="Close">×</button>
-  <a href="#protocol" onclick="document.getElementById('mobile-menu').classList.remove('open')">Protocol</a>
-  <a href="#who" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Businesses</a>
-  <a href="#developers" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Devs</a>
-  <a href="#camera" onclick="document.getElementById('mobile-menu').classList.remove('open')" style="color:#F59A2E">PI Camera</a>
+  <a href="/about.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">About</a>
+  <a href="/for-businesses.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Businesses</a>
+  <a href="/for-agents.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">For Agents</a>
+  <a href="/registries.html" onclick="document.getElementById('mobile-menu').classList.remove('open')">Registries</a>
   <a href="https://app.tetapi.dev/claim" style="font-size:16px;font-weight:600;color:#fff;background:linear-gradient(180deg,#6E58D6,#5B45C9);padding:14px 30px;border-radius:16px">Start →</a>
 </div>
 
@@ -505,38 +505,44 @@ a{color:inherit;text-decoration:none}
         <span style="font-size:13px;font-weight:300">+</span>
         <span style="font-size:16px;font-weight:600;color:#F59A2E">π</span>
       </div>
-      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">tetapi.dev<br>hello&#64;tetapi.dev<br><span style="color:#9088B0">Seed Round 2026</span></div>
+      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TetaPi GmbH<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
     </div>
     <div>
-      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Protocol</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Company</div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <a href="#protocol" style="font-size:14px;color:#4A3F6B">Whitepaper</a>
+        <a href="/about.html" style="font-size:14px;color:#4A3F6B">About</a>
+        <a href="/how-it-works.html" style="font-size:14px;color:#4A3F6B">How it Works</a>
+        <a href="/registries.html" style="font-size:14px;color:#4A3F6B">Registries</a>
         <a href="https://github.com/teta-pi" target="_blank" rel="noopener" style="font-size:14px;color:#4A3F6B">GitHub</a>
-        <a href="#protocol" style="font-size:14px;color:#4A3F6B">Nostr</a>
-        <a href="#protocol" style="font-size:14px;color:#4A3F6B">C2PA standard</a>
       </div>
     </div>
     <div>
-      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Entities</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Use Cases</div>
       <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="/for-businesses.html" style="font-size:14px;color:#4A3F6B">For Businesses</a>
+        <a href="/for-agents.html" style="font-size:14px;color:#4A3F6B">For Agents</a>
         <a href="https://app.tetapi.dev/claim" style="font-size:14px;color:#4A3F6B">Start</a>
-        <a href="https://app.tetapi.dev" style="font-size:14px;color:#4A3F6B">Search</a>
-        <a href="#camera" style="font-size:14px;color:#4A3F6B">PI Camera</a>
-        <a href="#protocol" style="font-size:14px;color:#4A3F6B">Pricing</a>
+        <a href="https://app.tetapi.dev" style="font-size:14px;color:#4A3F6B">Search entities</a>
       </div>
     </div>
     <div>
-      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Developers</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Resources</div>
       <div style="display:flex;flex-direction:column;gap:10px">
-        <a href="#developers" style="font-size:14px;color:#4A3F6B">Docs</a>
-        <a href="#developers" style="font-size:14px;color:#4A3F6B">MCP server</a>
-        <a href="#developers" style="font-size:14px;color:#4A3F6B">API reference</a>
+        <a href="https://api.tetapi.dev/docs" style="font-size:14px;color:#4A3F6B">API Docs</a>
+        <a href="https://app.tetapi.dev/settings" style="font-size:14px;color:#4A3F6B">Settings</a>
+        <a href="/privacy.html" style="font-size:14px;color:#4A3F6B">Privacy</a>
+        <a href="/terms.html" style="font-size:14px;color:#4A3F6B">Terms</a>
       </div>
     </div>
   </div>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(26,16,53,.08)">
-    <div style="font-size:12.5px;color:#9088B0">© 2026 TETA+PI · Open Protocol · MIT License</div>
-    <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;color:rgba(144,136,176,.6)">#c2pa:verify · btc:ts:verified · θ+π:protocol:v1</div>
+    <div style="font-size:12.5px;color:#9088B0">© 2026 TetaPi GmbH · Open Protocol · MIT License</div>
+    <div style="display:flex;gap:20px">
+      <a href="/privacy.html" style="font-size:12.5px;color:#9088B0">Privacy</a>
+      <a href="/terms.html" style="font-size:12.5px;color:#9088B0">Terms</a>
+      <a href="https://api.tetapi.dev/docs" style="font-size:12.5px;color:#9088B0">API</a>
+      <a href="https://app.tetapi.dev/settings" style="font-size:12.5px;color:#9088B0">Settings</a>
+    </div>
   </div>
 </footer>
 
