@@ -404,19 +404,25 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="grid-3" style="margin-bottom:30px">
     <div data-reveal class="glass" style="padding:30px 28px">
-      <div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Stripe</div>
-      <div style="font-size:14.5px;color:#5A4F78;line-height:1.55;margin-top:12px">Not a bank — the infrastructure banks connect to.</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#5B45C9;margin-bottom:14px">Layer 1 · Registry</div>
+      <div style="font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px">Who are they?</div>
+      <div style="font-size:14.5px;color:#5A4F78;line-height:1.6">We query official registries — Handelsregister, GLEIF, EU VAT, DE-ÖKO — and attest the result on-chain.</div>
+      <div style="margin-top:18px;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;color:#5B45C9;background:rgba(91,69,201,.07);display:inline-block;padding:4px 10px;border-radius:8px">registry:attested</div>
     </div>
     <div data-reveal class="glass" style="padding:30px 28px">
-      <div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Let's Encrypt</div>
-      <div style="font-size:14.5px;color:#5A4F78;line-height:1.55;margin-top:12px">Not a browser — what browsers trust by default.</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#5B45C9;margin-bottom:14px">Layer 2 · C2PA</div>
+      <div style="font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px">Did they create this?</div>
+      <div style="font-size:14.5px;color:#5A4F78;line-height:1.6">Verified entities sign their content with a cryptographic key. Any C2PA-aware tool verifies the signature — without asking us.</div>
+      <div style="margin-top:18px;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;color:#5B45C9;background:rgba(91,69,201,.07);display:inline-block;padding:4px 10px;border-radius:8px">c2pa:verified</div>
     </div>
     <div data-reveal class="glass" style="padding:30px 28px">
-      <div style="font-size:24px;font-weight:600;letter-spacing:-.02em">Visa</div>
-      <div style="font-size:14.5px;color:#5A4F78;line-height:1.55;margin-top:12px">Not a wallet — the verification layer wallets run on.</div>
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#5B45C9;margin-bottom:14px">Layer 3 · Bitcoin</div>
+      <div style="font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px">When was this proven?</div>
+      <div style="font-size:14.5px;color:#5A4F78;line-height:1.6">Each verification record is hashed and anchored to the Bitcoin blockchain — permanent, immutable, independent of our servers.</div>
+      <div style="margin-top:18px;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;color:#5B45C9;background:rgba(91,69,201,.07);display:inline-block;padding:4px 10px;border-radius:8px">btc:anchored</div>
     </div>
   </div>
-  <div data-reveal style="text-align:center;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:15px;font-weight:600;color:#5B45C9;letter-spacing:.5px;margin-bottom:30px">θ+π: C2PA · BTC · Registry · MCP</div>
+  <div data-reveal style="text-align:center;font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:14px;font-weight:600;color:#5B45C9;letter-spacing:.5px;margin-bottom:30px">Accessed by AI agents via MCP — one call, three layers of proof.</div>
   <div class="grid-pub" style="margin-bottom:16px">
     <div data-reveal class="glass" style="padding:28px 30px">
       <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:#5B45C9;margin-bottom:18px">We publish — MIT</div>
