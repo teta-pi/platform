@@ -1,0 +1,55 @@
+# TETA+PI — Verification Layer for the Agent Internet
+# https://tetapi.dev
+# TetaPi GmbH · Frankfurt am Main, Germany · 2026
+
+## What is TETA+PI?
+
+TETA+PI is a cryptographic trust protocol and verification registry for the Agent Internet.
+Businesses, journalists, artists, and other entities get verified through official registries,
+C2PA content signing, and Bitcoin timestamping — then become discoverable by AI agents via MCP.
+
+## Protocol Stack (θ+π)
+
+- Layer 1 — Registry: Cross-reference against government and industry registries (Handelsregister, GLEIF, EU VAT, DE-ÖKO, DJV, C2PA)
+- Layer 2 — C2PA: Verified entities receive a cryptographic signing key for content authenticity
+- Layer 3 — Bitcoin: Each verification record is timestamped on the Bitcoin blockchain (OpenTimestamps)
+- Transport — MCP: AI agents access all three layers via the Model Context Protocol
+
+## For AI Agents
+
+MCP endpoint: https://mcp.tetapi.dev
+API endpoint: https://api.tetapi.dev/api/v1
+Agent manifest: https://app.tetapi.dev/.well-known/agent.json
+API docs: https://api.tetapi.dev/docs
+
+### Available MCP tools
+- teta_search — search verified entities by name, domain, or registry ID
+- teta_verify_entity — verify a specific entity and return trust level
+- teta_verify_endpoint — verify that a domain/endpoint belongs to a verified entity
+- teta_get_proof — retrieve cryptographic proof (C2PA + BTC timestamp) for an entity
+
+### Trust levels returned
+- registry_attested — entity confirmed in official registry
+- c2pa_verified — entity has active C2PA signing credentials
+- btc_confirmed — verification record anchored to Bitcoin blockchain
+
+## Site pages
+
+- / — Landing page, overview of the protocol
+- /about.html — About TetaPi GmbH, mission, values
+- /for-agents.html — MCP integration guide for AI agents (this page)
+- /for-businesses.html — How businesses get verified
+- /how-it-works.html — Technical explanation of the three-layer protocol
+- /registries.html — Full list of supported verification registries
+- /privacy.html — GDPR privacy policy
+- /terms.html — Terms of service
+
+## Contact
+
+hello@tetapi.dev
+protocol@tetapi.dev (protocol / integration questions)
+https://github.com/teta-pi
+
+## License
+
+Protocol specification: MIT

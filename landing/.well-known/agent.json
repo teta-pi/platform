@@ -1,0 +1,51 @@
+{
+  "name": "TETA+PI Verification Protocol",
+  "version": "1.0",
+  "description": "Trust infrastructure for the Agent Internet — universal verification of businesses, journalists, artists, and organizations via official registries, C2PA-signed media, and Bitcoin OpenTimestamps.",
+  "url": "https://tetapi.dev",
+  "mcp_endpoint": "https://mcp.tetapi.dev",
+  "api_endpoint": "https://api.tetapi.dev/api/v1",
+  "api_docs": "https://api.tetapi.dev/docs",
+  "llms_txt": "https://tetapi.dev/llms.txt",
+  "contact": "protocol@tetapi.dev",
+  "license": "MIT",
+  "capabilities": [
+    "entity_verification",
+    "endpoint_verification",
+    "c2pa_media_verification",
+    "bitcoin_timestamping",
+    "registry_attestation"
+  ],
+  "mcp_tools": [
+    {
+      "name": "teta_search",
+      "description": "Search verified entities by name, domain, or registry ID"
+    },
+    {
+      "name": "teta_verify_entity",
+      "description": "Verify a specific entity and return trust level with proof"
+    },
+    {
+      "name": "teta_verify_endpoint",
+      "description": "Verify that a domain or endpoint belongs to a verified entity"
+    },
+    {
+      "name": "teta_get_proof",
+      "description": "Retrieve cryptographic proof (C2PA credential + Bitcoin timestamp) for an entity"
+    }
+  ],
+  "verification_levels": [
+    "registry_attested",
+    "c2pa_verified",
+    "btc_confirmed"
+  ],
+  "entity_types": ["business", "journalist", "artist", "organization"],
+  "registries": [
+    "Germany Handelsregister",
+    "GLEIF (global LEI)",
+    "EU VAT",
+    "DE-ÖKO (organic)",
+    "DJV (press)",
+    "C2PA content credentials"
+  ]
+}
