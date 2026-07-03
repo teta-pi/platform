@@ -87,6 +87,7 @@ a{color:inherit;text-decoration:none}
 .grid-foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
 
 .grid-price{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}
+.grid-evo{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:stretch}
 .price-card{display:flex;flex-direction:column;padding:26px 22px;border-radius:18px}
 .price-feat{display:flex;align-items:baseline;gap:8px;font-size:13px;color:#4A3F6B;line-height:1.5}
 .price-feat span:first-child{color:#5B45C9;font-weight:700}
@@ -96,6 +97,7 @@ a{color:inherit;text-decoration:none}
   .grid-tools{grid-template-columns:1fr}
   .grid-res{grid-template-columns:repeat(2,1fr)}
   .grid-price{grid-template-columns:repeat(2,1fr)}
+  .grid-evo{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
   .nav-links{display:none}
@@ -105,6 +107,7 @@ a{color:inherit;text-decoration:none}
   .grid-pub{grid-template-columns:1fr}
   .grid-foot{grid-template-columns:1fr 1fr}
   .grid-price{grid-template-columns:1fr}
+  .grid-evo{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -163,6 +166,15 @@ a{color:inherit;text-decoration:none}
       <a href="https://app.tetapi.dev" class="btn-ghost">Search entities →</a>
     </div>
     <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;color:#9088B0;margin-top:22px;letter-spacing:.3px">registry:attested · c2pa:verified · btc:confirmed</div>
+  </div>
+</section>
+
+<!-- ======== EU AI ACT COUNTDOWN ======== -->
+<section style="max-width:1120px;margin:0 auto;padding:0 32px">
+  <div data-reveal style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:14px 24px;border-radius:16px;background:rgba(245,154,46,.10);border:1px solid rgba(245,154,46,.35)">
+    <span style="font-size:16px">⚠️</span>
+    <span style="font-size:14px;font-weight:600;color:#3A2C5C">EU AI Act Article 50: C2PA content labeling becomes mandatory in</span>
+    <span id="ai-act-days" style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:14px;font-weight:700;color:#E8890F;min-width:64px;text-align:center;font-variant-numeric:tabular-nums">— days</span>
   </div>
 </section>
 
@@ -238,6 +250,29 @@ a{color:inherit;text-decoration:none}
       <div style="font-size:21px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px">Human-made, proven</div>
       <div style="font-size:14.5px;color:#5A4F78;line-height:1.55">C2PA-signed work. Prove it's human-made, not AI-generated. Verifiable at any point in time.</div>
     </div>
+  </div>
+</section>
+
+<!-- ======== ENTITY TYPES GRID ======== -->
+<section class="section" id="entities">
+  <div data-reveal style="text-align:center;margin-bottom:44px">
+    <div class="eyebrow">Entity types</div>
+    <h2 style="font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.12;margin:0 auto 14px;max-width:680px;text-wrap:balance">One registry. Every kind of digital entity.</h2>
+    <p style="font-size:clamp(16px,2vw,19px);color:#5A4F78;max-width:600px;margin:0 auto;line-height:1.55">AI agents are the first class of entity that urgently needs verified identity — they are not the last.</p>
+  </div>
+  <div class="grid-4" style="gap:12px">
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">👤</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">People</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🏢</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Companies</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🏷️</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Brands</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🌐</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Domains</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🖥️</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Websites</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🔌</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">APIs</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🧠</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">AI Models</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">🔗</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">MCP Servers</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">📦</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Software</span></div>
+    <div data-reveal style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1px solid #E2DCF0"><span style="font-size:18px">📂</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Repositories</span></div>
+    <div data-reveal title="The first urgent class — not the only one." style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1.5px solid #F59A2E;box-shadow:0 4px 14px rgba(245,154,46,.16)"><span style="font-size:18px">🤖</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">AI Agents</span></div>
+    <div data-reveal title="The first urgent class — not the only one." style="display:flex;align-items:center;gap:12px;padding:18px 20px;border-radius:14px;background:#EDE8F7;border:1.5px solid #F59A2E;box-shadow:0 4px 14px rgba(245,154,46,.16)"><span style="font-size:18px">⚙️</span><span style="font-size:14.5px;font-weight:600;color:#3A2C5C">Autonomous Entities</span></div>
   </div>
 </section>
 
@@ -319,6 +354,35 @@ a{color:inherit;text-decoration:none}
       <span style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;font-weight:500;color:#3A2C5C;padding:7px 14px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 1px 0 rgba(255,255,255,.9)">level:verified</span>
     </div>
   </div>
+</section>
+
+<!-- ======== TWIRA ======== -->
+<section class="section" id="twira">
+  <div data-reveal style="text-align:center;margin-bottom:40px">
+    <div class="eyebrow">The algorithm</div>
+    <h2 style="font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.12;margin:0 auto;max-width:680px;text-wrap:balance">Ranking earned through trust. Not purchased through ads.</h2>
+  </div>
+  <div data-reveal style="max-width:640px;margin:0 auto 20px;padding:36px 40px;border-radius:18px;background:#211640;box-shadow:0 20px 60px rgba(33,22,64,.4),inset 0 1px 0 rgba(255,255,255,.08);text-align:center">
+    <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:clamp(17px,2.6vw,24px);font-weight:600;color:#fff;letter-spacing:.5px">TWIRA(entity, query) = <span style="color:#9F8BEE">α·T</span> + <span style="color:#F59A2E">β·I</span> + <span style="color:#6FD3A8">γ·P</span></div>
+  </div>
+  <div class="grid-3" style="margin-bottom:24px">
+    <div data-reveal class="glass" style="padding:28px 26px">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:22px;font-weight:700;color:#9F8BEE;margin-bottom:12px">T</div>
+      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px">Trust Score</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.55">Verification level × recency × source weight. Registry attestation counts more than self-declaration.</div>
+    </div>
+    <div data-reveal class="glass" style="padding:28px 26px">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:22px;font-weight:700;color:#F59A2E;margin-bottom:12px">I</div>
+      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px">Intent Alignment</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.55">Semantic match between the agent's query and your blocks. C2PA-signed blocks weighted higher.</div>
+    </div>
+    <div data-reveal class="glass" style="padding:28px 26px">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:22px;font-weight:700;color:#3FA97C;margin-bottom:12px">P</div>
+      <div style="font-size:18px;font-weight:600;letter-spacing:-.02em;margin-bottom:8px">Provenance</div>
+      <div style="font-size:14px;color:#5A4F78;line-height:1.55">Bitcoin timestamp depth + C2PA chain + endpoint uptime. History cannot be bought — only accumulated.</div>
+    </div>
+  </div>
+  <div data-reveal style="text-align:center;font-size:13px;color:#9088B0;line-height:1.6">Co-invented with our CTO. arXiv paper in preparation.<br>The formula is public. The registry data behind it is not.</div>
 </section>
 
 <!-- ======== FOR DEVELOPERS ======== -->
@@ -568,6 +632,36 @@ a{color:inherit;text-decoration:none}
   <div data-reveal style="text-align:center;font-size:13.5px;color:#9088B0">Verification status is never for sale. Ranking by relevance, not payment. Free forever for consumers.</div>
 </section>
 
+<!-- ======== PRODUCT EVOLUTION ======== -->
+<section class="section" id="evolution">
+  <div data-reveal style="text-align:center;margin-bottom:44px">
+    <div class="eyebrow">Product evolution</div>
+    <h2 style="font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.025em;line-height:1.14;margin:0 auto;max-width:680px;text-wrap:balance">The registry is the first product.<br>The infrastructure is the company.</h2>
+  </div>
+  <div class="grid-evo">
+    <div data-reveal style="position:relative;padding:24px 20px;border-radius:16px;background:linear-gradient(180deg,#6E58D6,#5B45C9);box-shadow:0 12px 34px rgba(91,69,201,.32),inset 0 1px 0 rgba(255,255,255,.3)">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.75);margin-bottom:10px">01 · TODAY</div>
+      <div style="font-size:15.5px;font-weight:700;color:#fff;line-height:1.3">Entity Verification</div>
+    </div>
+    <div data-reveal style="padding:24px 20px;border-radius:16px;background:rgba(255,255,255,.4);border:1.5px solid rgba(91,69,201,.4)">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:#5B45C9;margin-bottom:10px">02 · NEXT</div>
+      <div style="font-size:15.5px;font-weight:700;color:#3A2C5C;line-height:1.3">Identity + Reputation</div>
+    </div>
+    <div data-reveal style="padding:24px 20px;border-radius:16px;background:rgba(255,255,255,.4);border:1.5px solid rgba(245,154,46,.5)">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:#E8890F;margin-bottom:10px">03 · NEXT</div>
+      <div style="font-size:15.5px;font-weight:700;color:#3A2C5C;line-height:1.3">Discovery</div>
+    </div>
+    <div data-reveal style="padding:24px 20px;border-radius:16px;background:rgba(255,255,255,.4);border:1.5px solid rgba(245,154,46,.5)">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:#E8890F;margin-bottom:10px">04 · HORIZON</div>
+      <div style="font-size:15.5px;font-weight:700;color:#3A2C5C;line-height:1.3">Agent Economy</div>
+    </div>
+    <div data-reveal style="padding:24px 20px;border-radius:16px;background:rgba(255,255,255,.4);border:1.5px solid rgba(26,16,53,.35)">
+      <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:10px;font-weight:700;letter-spacing:1px;color:#1A1035;margin-bottom:10px">05 · HORIZON</div>
+      <div style="font-size:15.5px;font-weight:700;color:#3A2C5C;line-height:1.3">Autonomous Commerce</div>
+    </div>
+  </div>
+</section>
+
 <!-- ======== FINAL CTA ======== -->
 <section class="section">
   <div data-reveal style="padding:60px 44px;border-radius:22px;text-align:center;background:linear-gradient(160deg,rgba(110,88,214,.94),rgba(91,69,201,.94));border:1px solid rgba(255,255,255,.25);box-shadow:0 24px 70px rgba(91,69,201,.34),inset 0 1px 0 rgba(255,255,255,.35)">
@@ -640,6 +734,15 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersect
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 }
+
+// EU AI Act countdown — Article 50 deadline, 2026-08-02 00:00 CET
+(function () {
+  const el = document.getElementById('ai-act-days');
+  if (!el) return;
+  const deadline = new Date('2026-08-02T00:00:00+02:00');
+  const days = Math.max(0, Math.ceil((deadline - Date.now()) / 86400000));
+  el.textContent = days + ' days';
+})();
 </script>
 
 </body>
