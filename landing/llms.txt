@@ -1,4 +1,4 @@
-# TETA+PI — Verification Layer for the Agent Internet
+# TETA+PI — Trust Infrastructure for Digital Entities
 # https://tetapi.dev
 # TetaPi GmbH · Frankfurt am Main, Germany · 2026
 
