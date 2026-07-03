@@ -1,6 +1,6 @@
 {
   "name": "TETA+PI Verification Protocol",
-  "version": "1.0",
+  "version": "1.1.0",
   "description": "Trust infrastructure for the Agent Internet — universal verification of businesses, journalists, artists, and organizations via official registries, C2PA-signed media, and Bitcoin OpenTimestamps.",
   "url": "https://tetapi.dev",
   "mcp_endpoint": "https://mcp.tetapi.dev",
@@ -12,6 +12,7 @@
   "capabilities": [
     "entity_verification",
     "endpoint_verification",
+    "intent_routing",
     "c2pa_media_verification",
     "bitcoin_timestamping",
     "registry_attestation"
@@ -32,6 +33,14 @@
     {
       "name": "teta_get_proof",
       "description": "Retrieve cryptographic proof (C2PA credential + Bitcoin timestamp) for an entity"
+    },
+    {
+      "name": "teta_resolve_intent",
+      "description": "TWIRA-ranked intent routing with per-component score breakdown"
+    },
+    {
+      "name": "teta_get_profile",
+      "description": "Full public profile with public blocks for a verified entity"
     }
   ],
   "verification_levels": [
@@ -39,7 +48,7 @@
     "c2pa_verified",
     "btc_confirmed"
   ],
-  "entity_types": ["business", "journalist", "artist", "organization"],
+  "entity_types": ["person", "business", "organization", "brand", "domain", "website", "api", "ai_model", "mcp_server", "software", "repository", "ai_agent"],
   "registries": [
     "Germany Handelsregister",
     "GLEIF (global LEI)",
