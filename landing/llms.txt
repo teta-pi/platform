@@ -10,7 +10,7 @@ C2PA content signing, and Bitcoin timestamping — then become discoverable by A
 
 ## Protocol Stack (θ+π)
 
-- Layer 1 — Registry: Cross-reference against government and industry registries (Handelsregister, GLEIF, EU VAT, DE-ÖKO, DJV, C2PA)
+- Layer 1 — Registry: Cross-reference against government and industry registries (Handelsregister DE, Ukraine EDR, Companies House UK, SEC EDGAR + US state registries (NY, CO), SIRENE FR, ARES CZ, PRH FI, Brønnøysundregistrene NO, GLEIF, OpenCorporates, EU VAT, DE-ÖKO, DJV, C2PA)
 - Layer 2 — C2PA: Verified entities receive a cryptographic signing key for content authenticity
 - Layer 3 — Bitcoin: Each verification record is timestamped on the Bitcoin blockchain (OpenTimestamps)
 - Transport — MCP: AI agents access all three layers via the Model Context Protocol

@@ -48,11 +48,31 @@
     "c2pa_verified",
     "btc_confirmed"
   ],
-  "entity_types": ["person", "business", "organization", "brand", "domain", "website", "api", "ai_model", "mcp_server", "software", "repository", "ai_agent"],
+  "entity_types": [
+    "person",
+    "business",
+    "organization",
+    "brand",
+    "domain",
+    "website",
+    "api",
+    "ai_model",
+    "mcp_server",
+    "software",
+    "repository",
+    "ai_agent"
+  ],
   "registries": [
     "Germany Handelsregister",
+    "Ukraine EDR",
+    "UK Companies House",
+    "US SEC EDGAR + state registries (NY DOS, CO SOS)",
+    "France SIRENE (recherche-entreprises)",
+    "Czech ARES",
+    "Finland PRH",
+    "Norway Brønnøysundregistrene",
     "GLEIF (global LEI)",
-    "EU VAT",
+    "OpenCorporates (200+ jurisdictions)",
     "DE-ÖKO (organic)",
     "DJV (press)",
     "C2PA content credentials"
