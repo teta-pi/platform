@@ -1,6 +1,6 @@
 {
   "name": "TETA+PI Verification Protocol",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Trust infrastructure for the Agent Internet — universal verification of businesses, journalists, artists, and organizations via official registries, C2PA-signed media, and Bitcoin OpenTimestamps.",
   "url": "https://tetapi.dev",
   "mcp_endpoint": "https://mcp.tetapi.dev",
@@ -36,11 +36,15 @@
     },
     {
       "name": "teta_resolve_intent",
-      "description": "TWIRA-ranked intent routing with per-component score breakdown"
+      "description": "TWIRA-ranked intent routing with full T/I/P breakdown, first_verified_at and proof URL; filters by entity_types and min_trust"
     },
     {
       "name": "teta_get_profile",
       "description": "Full public profile with public blocks for a verified entity"
+    },
+    {
+      "name": "teta_verify_claim",
+      "description": "Check whether a claim about an entity is supported by its verified content blocks"
     }
   ],
   "verification_levels": [
