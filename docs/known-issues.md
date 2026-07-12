@@ -54,6 +54,22 @@ up the `/verify/*` + `/legal-entity` endpoints, and add `legal_entity_id` to
 `BusinessOut`/`AgentBusinessProfile` if the owner dashboard needs it.
 Status: OPEN (expected — 3.4 is the frontend follow-up task).
 
+## 🟠 Renaming a registry-verified entity keeps `registry_status="verified"`
+Found in manager review of PR #15 (1.3). Before the rework, renaming a business
+re-triggered registry verification; now `update_business` applies the new name
+and the old `registry_status` survives — so an owner can registry-verify a real
+legal name, rename the entity to anything, and keep the verified badge. Fix
+(small backend task 1.5): on a name change, reset `registry_status` to
+`"unverified"` (history stays in `verification_events`; the owner can re-run
+`POST /{id}/verify/registry` for the new name). Related, lower-severity notes
+for 1.4's weight design: (a) email-control accepts ANY non-free-mailbox
+address — nothing ties the verified mailbox domain to the entity, and only a
+hash of it is recorded, so weight it accordingly; (b) `/verify/domain/check`
+issues a blind GET to `https://<user-domain>/.well-known/tetapi-verify.txt` —
+boolean-only result, but still a request to an arbitrary host (mild SSRF
+surface; consider blocking private-range hosts later).
+Status: OPEN (queued as 1.5).
+
 ## 🟠 In-memory state assumes a single uvicorn worker
 Rate limiters (claims, email-code) and the Handelsregister lock/cache live in
 process memory. Correct only under `uvicorn --workers 1` (current prod). Scaling to
