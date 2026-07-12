@@ -1,0 +1,32 @@
+.tetapi-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border-radius: 20px;
+	background: #f0f6fc;
+	border: 1px solid #cce0f5;
+	color: #1a3a5c;
+	text-decoration: none;
+	font-size: 13px;
+	line-height: 1.4;
+}
+
+.tetapi-badge:hover {
+	background: #e1eefb;
+}
+
+.tetapi-badge__icon {
+	font-weight: bold;
+}
+
+.tetapi-badge--full,
+.tetapi-badge--partial {
+	background: #eaf7ee;
+	border-color: #bfe6c8;
+	color: #14532d;
+}
+
+.tetapi-badge__legal {
+	opacity: 0.75;
+}
