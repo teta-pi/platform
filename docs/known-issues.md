@@ -39,6 +39,21 @@ caller). Deleted the route, the now-dead `UserCreate`/`UserOut` schemas, the
 Account creation now happens only via verified paths (`/auth/verify-code`,
 `/auth/magic-link`).
 
+## 🟠 Frontend `registry_status`/`verification_level` types are now stale
+`web/src/lib/types.ts` still types `registry_status` as `"pending" | "verified"
+| "failed" | "multiple_matches"` and `VerificationLevel` without `"email"` /
+`"domain"`. Backend (1.3, verification rework) now returns `registry_status:
+"unverified"` by default and `verification_level: "email" | "domain"` when
+those new methods succeed — values the current frontend types/labels
+(`LEVEL_ACCENT`/`LEVEL_LABEL`/`LEVEL_HASH` in `page.tsx`/`seedData.ts`) don't
+know about yet. Also new: `AgentBusinessProfile`/`BusinessOut` schemas were
+deliberately **not** extended with `legal_entity_id` (out of 1.3's scoped
+files); only the public-by-slug payload discloses `legal_entity` today.
+**Fix (3.4):** add the new enum values + a "coming soon" style for them, wire
+up the `/verify/*` + `/legal-entity` endpoints, and add `legal_entity_id` to
+`BusinessOut`/`AgentBusinessProfile` if the owner dashboard needs it.
+Status: OPEN (expected — 3.4 is the frontend follow-up task).
+
 ## 🟠 In-memory state assumes a single uvicorn worker
 Rate limiters (claims, email-code) and the Handelsregister lock/cache live in
 process memory. Correct only under `uvicorn --workers 1` (current prod). Scaling to
