@@ -163,7 +163,7 @@ a{color:inherit;text-decoration:none}
     <p style="font-size:clamp(16px,2vw,20px);font-weight:400;line-height:1.5;color:#5A4F78;max-width:560px;margin:0 auto 14px;text-wrap:pretty">Verified entities are visible in agent search.<br>Unverified ones don't exist in Agent Internet.</p>
     <p style="font-size:14px;line-height:1.6;color:#9088B0;max-width:560px;margin:0 auto 36px;text-wrap:pretty">People, companies, APIs, AI models, MCP servers, agents — one registry for every digital entity.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
-      <a href="#waitlist" class="btn-primary">Get verified — lock $25 founding price</a>
+      <a href="https://app.tetapi.dev/claim" class="btn-primary">Create your page</a>
       <a href="https://app.tetapi.dev" class="btn-ghost">Search entities →</a>
     </div>
     <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:12px;color:#9088B0;margin-top:22px;letter-spacing:.3px">registry:attested · c2pa:verified · btc:confirmed</div>
@@ -194,11 +194,7 @@ a{color:inherit;text-decoration:none}
           <option value="other">Other</option>
         </select>
       </div>
-      <label style="display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:#4A3F6B;line-height:1.5;cursor:pointer">
-        <input type="checkbox" id="claim-pay" style="margin-top:2px;width:16px;height:16px;accent-color:#5B45C9">
-        <span>I'm ready to pay <strong>$25</strong> when billing launches — lock my founding price.</span>
-      </label>
-      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:inherit;justify-content:center">Get verified — join the registry</button>
+      <button type="submit" class="btn-primary" style="border:none;cursor:pointer;font-family:inherit;justify-content:center">Join early access — be first</button>
     </form>
     <div id="claim-success" style="display:none;text-align:center;padding:20px 0 4px">
       <div style="font-size:22px;font-weight:700;color:#5B45C9;margin-bottom:6px">You're in! 🎉</div>
@@ -702,7 +698,7 @@ a{color:inherit;text-decoration:none}
         <span style="font-size:13px;font-weight:300">+</span>
         <span style="font-size:16px;font-weight:600;color:#F59A2E">π</span>
       </div>
-      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TetaPi GmbH<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
+      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TETA+PI<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
     </div>
     <div>
       <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Company</div>
@@ -733,7 +729,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(26,16,53,.08)">
-    <div style="font-size:12.5px;color:#9088B0">© 2026 TetaPi GmbH · Open Protocol · MIT License</div>
+    <div style="font-size:12.5px;color:#9088B0">© 2026 TETA+PI · Open Protocol · MIT License</div>
     <div style="display:flex;gap:20px">
       <a href="https://tetapi.dev/privacy.html" style="font-size:12.5px;color:#9088B0">Privacy</a>
       <a href="https://tetapi.dev/terms.html" style="font-size:12.5px;color:#9088B0">Terms</a>
@@ -786,7 +782,6 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersect
         body: JSON.stringify({
           email: document.getElementById('claim-email').value,
           entity_type: document.getElementById('claim-type').value,
-          ready_to_pay: document.getElementById('claim-pay').checked,
           source: {
             utm_source: params.get('utm_source') || null,
             utm_medium: params.get('utm_medium') || null,

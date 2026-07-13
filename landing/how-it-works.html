@@ -18,7 +18,7 @@
 <meta name="twitter:description" content="Registry · C2PA · Bitcoin. Three layers, one cryptographic identity.">
 <meta name="twitter:image" content="https://tetapi.dev/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle","name":"How TETA+PI Verification Works","url":"https://tetapi.dev/how-it-works.html","description":"Three layers of cryptographic trust: registry verification, C2PA content signing, and Bitcoin timestamping.","publisher":{"@type":"Organization","name":"TetaPi GmbH","url":"https://tetapi.dev"}}
+{"@context":"https://schema.org","@type":"TechArticle","name":"How TETA+PI Verification Works","url":"https://tetapi.dev/how-it-works.html","description":"Three layers of cryptographic trust: registry verification, C2PA content signing, and Bitcoin timestamping.","publisher":{"@type":"Organization","name":"TETA+PI","url":"https://tetapi.dev"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,7 +142,7 @@ a{color:inherit;text-decoration:none}
         <h2 style="font-size:clamp(20px,2.5vw,26px);font-weight:700;letter-spacing:-.02em;margin:0 0 14px;line-height:1.2">C2PA content signing</h2>
         <p style="font-size:15px;color:#5A4F78;margin:0 0 20px;line-height:1.65">The Coalition for Content Provenance and Authenticity (C2PA) standard allows verified entities to cryptographically sign their content — articles, images, videos, product data. Any agent can verify that content came from a TETA+PI-attested entity.</p>
         <div style="font-family:ui-monospace,monospace;font-size:12px;color:#9088B0;background:rgba(26,16,53,.04);padding:14px 16px;border-radius:12px;line-height:1.6">
-          c2pa:manifest → issuer: TetaPi GmbH<br>
+          c2pa:manifest → issuer: TETA+PI<br>
           entity: GreenFarm GmbH · verified: true<br>
           signed: 2026-06-29T14:32:11Z
         </div>
@@ -157,7 +157,7 @@ a{color:inherit;text-decoration:none}
       <div>
         <div style="font-size:11px;font-family:ui-monospace,monospace;letter-spacing:1.2px;text-transform:uppercase;color:#9088B0;margin-bottom:8px">Layer 3</div>
         <h2 style="font-size:clamp(20px,2.5vw,26px);font-weight:700;letter-spacing:-.02em;margin:0 0 14px;line-height:1.2">Bitcoin timestamping</h2>
-        <p style="font-size:15px;color:#5A4F78;margin:0 0 20px;line-height:1.65">A hash of the verification record is committed to the Bitcoin blockchain. This creates an immutable, trustless timestamp — no party (including TetaPi GmbH) can retroactively alter or revoke a verification without it being detectable.</p>
+        <p style="font-size:15px;color:#5A4F78;margin:0 0 20px;line-height:1.65">A hash of the verification record is committed to the Bitcoin blockchain. This creates an immutable, trustless timestamp — no party (including TETA+PI) can retroactively alter or revoke a verification without it being detectable.</p>
         <div style="font-family:ui-monospace,monospace;font-size:12px;color:#9088B0;background:rgba(26,16,53,.04);padding:14px 16px;border-radius:12px;line-height:1.6">
           btc:txid → a3f7d2...c9e1<br>
           block: 895,441 · confirmations: 1,204<br>
@@ -213,7 +213,7 @@ a{color:inherit;text-decoration:none}
         <span style="font-size:13px;font-weight:300">+</span>
         <span style="font-size:16px;font-weight:600;color:#F59A2E">π</span>
       </div>
-      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TetaPi GmbH<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
+      <div style="font-size:13.5px;color:#5A4F78;line-height:1.9">TETA+PI<br>tetapi.dev<br>hello&#64;tetapi.dev</div>
     </div>
     <div>
       <div style="font-family:ui-monospace,'SF Mono','Menlo',monospace;font-size:11px;letter-spacing:1.1px;text-transform:uppercase;color:#9088B0;margin-bottom:14px">Company</div>
@@ -244,7 +244,7 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(26,16,53,.08)">
-    <div style="font-size:12.5px;color:#9088B0">© 2026 TetaPi GmbH · Open Protocol · MIT License</div>
+    <div style="font-size:12.5px;color:#9088B0">© 2026 TETA+PI · Open Protocol · MIT License</div>
     <div style="display:flex;gap:20px">
       <a href="https://tetapi.dev/privacy.html" style="font-size:12.5px;color:#9088B0">Privacy</a>
       <a href="https://tetapi.dev/terms.html" style="font-size:12.5px;color:#9088B0">Terms</a>
