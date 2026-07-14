@@ -6,6 +6,49 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-13 · 5.3 devops · monorepo → 5 repos, executed live — MERGE FREEZE LIFTED
+Done: executed the approved 5.2 plan (`docs/decisions.md`). Created
+`teta-pi/{api,web,mcp,landing,infra}`; extracted each with `git filter-repo`
+(preserved per-folder history: api 41 commits, web 40, mcp 13, landing 29,
+infra 84); dropped the root npm-workspace files from `infra` (§3) and the mono
+`deploy.yml` from `infra` (replaced by per-repo pipelines, not duplicated).
+Applied branch protection to all 5 (matching the mono's). **Deviation from
+plan:** `DEPLOY_SSH_KEY` as org-level secret needed `admin:org` scope this
+session's token doesn't have — set as a **repo-level secret in each of the 5
+repos** instead (functionally identical; rotation is now 5 edits, not 1 —
+owner can upgrade to org-level later with a one-time `gh auth refresh
+-s admin:org`). Cutover (§6 step 7): disabled the mono `deploy.yml` (renamed
+to `.disabled-5.3-split`, not deleted), then cut over **sequentially**,
+verifying prod after each: api → web → mcp → landing.
+**Incident during cutover:** `teta-pi/web`'s first deploy took `app.tetapi.dev`
+down (502, ~5 min, 14:20–14:25 UTC). Root cause: pre-split, `next build` ran
+from the mono's `web/` subdir, so standalone tracing baked in a nested `web/`
+folder matching systemd's `WorkingDirectory=/opt/tetapi/web/web`; post-split
+the repo root IS the app, so standalone output is flat and the old rsync
+destination silently produced `Cannot find module '.../web/web/server.js'`.
+Fixed by rsyncing one directory deeper in `deploy.yml` (no systemd change) —
+follow-up PR merged, verified `Web up`, service and all deep routes (`/profile`,
+`/claim`, `/e/[slug]`) confirmed 200 within the same session.
+**Also found, not part of 5.2's scope:** three pre-existing org placeholder
+repos (`teta-pi/pi-camera`, `teta-pi/mcp-server`, `teta-pi/protocol`) — 2
+commits each, README/LICENSE only, dated 2026-06-26/28, predate the
+session-numbered engineering process. Left untouched; flagged for a separate
+cleanup/naming decision (they don't collide with the 5 new repos' names, but
+are dead weight in the org).
+Changed: 5 new GitHub repos with full history; `teta-pi/platform`'s
+`.github/workflows/deploy.yml` renamed to `.disabled-5.3-split` (mono kept
+un-archived per the plan's rollback stance — defer archiving until a full
+green cycle is observed over a few days); `docs/roadmap.md` (5.3 done).
+Risk: low now, was momentarily live-broken (see incident above, resolved
+within ~5 min). Rollback path intact: mono's deploy.yml still present
+(disabled, not deleted) — re-enabling it redeploys everything to the same
+server paths if any new pipeline misbehaves later. DO snapshot from the 9.1
+resize also still valid as a deeper fallback.
+Next: monitor the 5 new pipelines over the next few real deploys before
+archiving the mono (plan step 9); decide what to do with the 3 stale
+placeholder repos; consider requesting `admin:org` to consolidate
+`DEPLOY_SSH_KEY` to a single org-level secret.
+
 ## 2026-07-13 · manager · 5.3 execution started — MERGE FREEZE declared
 Declaring a merge freeze on `teta-pi/platform` main while 5.3 (repo split
 execution) runs, per the 5.2 plan's cutover protocol. No PRs will be merged
