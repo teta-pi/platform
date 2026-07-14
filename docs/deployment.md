@@ -1,5 +1,23 @@
 # Deployment
 
+## Repo split (5.3, executed 2026-07-13)
+This repo (`teta-pi/platform`) is the **retired monorepo** — its
+`.github/workflows/deploy.yml` was renamed to `deploy.yml.disabled-5.3-split`
+and no longer deploys anything. Live code now lives in 5 separate repos, each
+with its own deploy pipeline, all still targeting this same server:
+
+| Repo | Deploys to | Docs live here now |
+|---|---|---|
+| `teta-pi/api` | `/opt/tetapi/api` | `docs/api.md`, `docs/database.md`, `docs/registries.md` |
+| `teta-pi/web` | `/opt/tetapi/web` | — |
+| `teta-pi/mcp` | `/opt/tetapi/mcp` | `docs/mcp.md` |
+| `teta-pi/landing` | `/var/www/teta-pi/` | — |
+| **`teta-pi/infra`** | nothing (ops/brain only) | **canonical `docs/`, this file, root `CLAUDE.md`, `deploy/`, compose files, `unban-ip.yml`** |
+
+Full split plan + rationale: `docs/decisions.md` §"Monorepo → separate repos
+(scope C) split plan". This `teta-pi/platform` repo stays un-archived until a
+few real deploys from the new pipelines have gone green (5.4).
+
 ## Server
 DigitalOcean droplet, Frankfurt, `164.90.235.66` — resized 2026-07-13 to
 `s-1vcpu-2gb` (1 vCPU / 2 GB / 50 GB, $12/mo; was `s-1vcpu-512mb-10gb`, see the
