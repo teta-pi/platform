@@ -6,6 +6,33 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-14 · 7.4 github · extract wordpress-plugin into its own repo
+Done: `wordpress-plugin/` was left in the retired mono at the 5.3 split
+("noted, not gated" per `docs/decisions.md`) — the owner asked for the second
+migration now. `git filter-repo --path wordpress-plugin/ --path-rename
+wordpress-plugin/:` in a throwaway clone (mono never mutated), pushed to new
+public repo `teta-pi/wordpress-plugin` (1 original commit + 1 cleanup commit
+fixing doc cross-references that assumed the monorepo layout — `README.md`
+and `class-tetapi-domain.php` referenced `docs/api.md`/
+`docs/verification-rework.md` as if still local; now linked to
+`teta-pi/infra`). Added a thin `CLAUDE.md` (PHP 7.4+ rules, wp.org Plugin
+Check readiness, no-payment-code rule per the 2026-07-14 free-launch
+decision) and a new `check.yml` CI workflow (PHP lint + WordPress Plugin
+Check — no deploy pipeline needed, the plugin ships via wp.org not our
+server). Branch protection applied matching the other 5 repos.
+`wordpress-plugin/` removed from `teta-pi/platform`. In-flight `12.2`
+worktree had 0 unpushed commits — redirected cleanly to the new repo, no
+rescue/cherry-pick needed (unlike the 14.1 camera incident).
+Changed: new `teta-pi/wordpress-plugin` repo; `teta-pi/platform`
+(`wordpress-plugin/` removed); `docs/roadmap.md` (7.4 done, 12.1/12.2/12.3
+repo pointers updated); `docs/decisions.md` (repo-layout table +1 row);
+`docs/deployment.md` (repo-split table +1 row).
+Risk: none — no server/deploy impact (confirmed 4 subdomains unaffected,
+this extraction never touched them).
+Next: resume 12.2 in the new repo (worktree already redirected).
+
+---
+
 ## 2026-07-14 · manager · three owner decisions — WP free launch, legal form, GTM roles
 Done: owner made three decisions after the GTM/WordPress/legal-structure
 discussion. (1) **GTM working pattern confirmed**: for owner-only steps

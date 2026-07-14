@@ -1,10 +1,9 @@
 # Deployment
 
-## Repo split (5.3, executed 2026-07-13)
+## Repo split (5.3, executed 2026-07-13; wordpress-plugin extracted 2026-07-14, task 7.4)
 This repo (`teta-pi/platform`) is the **retired monorepo** — its
 `.github/workflows/deploy.yml` was renamed to `deploy.yml.disabled-5.3-split`
-and no longer deploys anything. Live code now lives in 5 separate repos, each
-with its own deploy pipeline, all still targeting this same server:
+and no longer deploys anything. Live code now lives in 6 separate repos:
 
 | Repo | Deploys to | Docs live here now |
 |---|---|---|
@@ -12,6 +11,7 @@ with its own deploy pipeline, all still targeting this same server:
 | `teta-pi/web` | `/opt/tetapi/web` | — |
 | `teta-pi/mcp` | `/opt/tetapi/mcp` | `docs/mcp.md` |
 | `teta-pi/landing` | `/var/www/teta-pi/` | — |
+| `teta-pi/wordpress-plugin` | **wp.org — not our server** (distributed plugin, `check.yml` CI is lint-only) | — |
 | **`teta-pi/infra`** | nothing (ops/brain only) | **canonical `docs/`, this file, root `CLAUDE.md`, `deploy/`, compose files, `unban-ip.yml`** |
 
 Full split plan + rationale: `docs/decisions.md` §"Monorepo → separate repos
