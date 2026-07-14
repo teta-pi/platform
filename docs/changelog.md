@@ -6,6 +6,42 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-14 · 2 mcp · 2.6 registry submission readiness
+Done: `mcp/server.json` `repository.url` fixed (`teta-pi/platform` + `subfolder:
+"mcp"` → `teta-pi/mcp`, no subfolder — the repo has lived at root since the
+5.3 split); `server.json` version synced to `SERVER_VERSION`. Agent-query-
+optimized all 7 `teta_*` tool descriptions to the GTM plan's own style
+("Verify if a business... before your agent transacts with it" — direct,
+second-person, agent-shaped, not protocol-speak) — behavior/schema unchanged.
+Added `proof_url` to the 6 tools that lacked it (only `teta_resolve_intent`
+had one, shipped `2.1`): `teta_search` uses the entity's real `slug` →
+`https://app.tetapi.dev/e/{slug}` (human page); `teta_verify_entity`,
+`teta_verify_claim`, `teta_get_proof`, `teta_get_profile` use the UUID
+already in scope → `https://api.tetapi.dev/api/v1/businesses/{id}/proof`
+(same JSON endpoint each already calls); `teta_verify_endpoint` only emits
+one when its optional `entity_id` param is UUID-shaped (it may be a slug,
+which the `/proof` route — `business_id: uuid.UUID` — would reject). No new
+API endpoint, no extra network calls, no client.ts changes. Bumped
+`SERVER_VERSION`/`package.json`/`server.json` 1.4.0 → **1.5.0** (description +
+output-shape change, per the existing version-bump rule). Found in passing
+and logged, not fixed here (backend, different repo now): `teta_resolve_intent`'s
+already-shipped `proof_url` (`api/app/api/routes/intent.py:76`) uses the
+entity **slug** against a route that requires a UUID — every proof_url that
+flagship tool has returned since `2.1` 422s. See `docs/known-issues.md`.
+`agent.json` sync (task item 2) not done here — both files now live in
+`teta-pi/landing` and `teta-pi/web`, out of this repo; flagging for whoever
+owns those to bump to match `mcp` `1.5.0` once this PR is live.
+Changed: `mcp/server.json`, `mcp/src/index.ts`, `mcp/package.json`.
+Risk: none — description/URL text only, no schema or transport change;
+`npx tsc --noEmit` clean, manifest smoke-tested locally (`/health`,
+`/.well-known/mcp` both report `1.5.0` and the full 7-tool list).
+Next: owner-run `mcp-publisher publish` once the DNS/GitHub-OAuth namespace
+proof is done (per `docs/mcp.md` Listings section) — this was the blocker;
+Phase 0 registry submissions can proceed. Someone should also fix the
+`intent.py:76` slug/UUID bug and bump `agent.json` in `landing`/`web`.
+
+---
+
 ## 2026-07-14 · 7.4 github · extract wordpress-plugin into its own repo
 Done: `wordpress-plugin/` was left in the retired mono at the 5.3 split
 ("noted, not gated" per `docs/decisions.md`) — the owner asked for the second
