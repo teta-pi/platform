@@ -237,12 +237,15 @@ Five repos under **`teta-pi`** (four scope-C components + one meta/infra repo):
 | `teta-pi/mcp` | `mcp/**` + `docs/mcp.md` | `/opt/tetapi/mcp` |
 | `teta-pi/landing` | `landing/**` | `/var/www/teta-pi/` |
 | **`teta-pi/infra`** (meta) | canonical `docs/` (overview, architecture, decisions, roadmap, changelog, glossary, known-issues, deployment, security, gtm, verification-rework), root `CLAUDE.md`, `deploy/nginx/*`, `deploy.sh`, `docker-compose*.yml`, `.env.example`, `unban-ip.yml`, server runbooks | nothing (ops/brain only) |
+| `teta-pi/wordpress-plugin` | `wordpress-plugin/**` (WP plugin PHP, thin `CLAUDE.md`, `check.yml` CI) | wp.org (task 12.3) — not our server |
 
-**`wordpress-plugin/`** is a shippable, independently-distributed artifact (a
-plugin users install), not part of the running server — it gets its own repo
-`teta-pi/wordpress-plugin`. It is outside the named scope-C four, but should
-move in the **same** cutover to avoid a second migration later. Noted, not
-gated.
+**`wordpress-plugin/`** was a shippable, independently-distributed artifact (a
+plugin users install), not part of the running server — extracted into its
+own repo `teta-pi/wordpress-plugin` on **2026-07-14** (task 7.4), the "second
+migration" this section anticipated. It was outside the named scope-C four at
+the original 5.3 cutover ("noted, not gated") and moved separately once the
+owner asked for it explicitly. Extraction was trivial (1 commit, no code
+coupling to `api`/`web`/`mcp`) — see `docs/roadmap.md` 7.4 for details.
 
 **Where docs / CLAUDE.md / roadmap live post-split — the one real design
 tension.** The session model (numbered directions, a manager session, `docs/`
