@@ -6,6 +6,30 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-13 · 15.1 security · threat model + standing red-team
+
+Done: wrote `docs/security.md` — full threat model (assets, trust boundaries,
+attacker classes, per-surface security checklist) + a triaged findings backlog and
+the recurring-audit loop design. Re-verified the three key 6.1 findings with benign
+non-destructive checks: 🔴 #1 media path traversal (prod 404, no auth gate), 🟠 #7
+/verify-endpoint SSRF (**confirmed live** — prod fetched `https://example.com`
+unauthenticated), 🟠 #11 fake client-side claim verify. Found 5 new issues (N1–N5):
+🟠 N1 X-Forwarded-For rate-limit bypass on `/claim`; 🟡 N2 `/docs`+`/openapi.json`
+public in prod; 🟡 N3 CORS default trusts localhost with credentials; 🟡 N4
+`pk_live_` prefix shared by user+device keys; 🟡 N5 no prod guard on default
+secrets. Mapped fixes to backend tasks 1.6 (path traversal), 1.7 (SSRF), 1.8
+(frontend, real claim verify), 1.9 (transport/abuse hardening bundle). Specced the
+15.2 CI scanners (CodeQL JS+Python, npm audit, bandit) — all runner-side, zero prod
+load.
+Changed: `docs/security.md` (new), `docs/known-issues.md` (appended N1–N5 under a
+dated red-team section), `docs/changelog.md`. **No code changed** — findings handed
+to backend/frontend.
+Risk: findings are reported, not fixed — the live unauth SSRF (#7) and unauth path
+traversal (#1) remain open on prod until 1.6/1.7 ship. Prod probing stayed within
+RoE (benign single requests, no exfiltration).
+Next: backend picks up 1.6 + 1.7 (highest priority — both live + unauthenticated);
+15.2 adds the `security.yml` CI workflow.
+
 ## 2026-07-13 · manager · 7.2 rescoped — repo descriptions need a real pass post-split
 Done: owner asked whether the github direction should finalize every repo's
 description after the 5.3 split. Checked live state: all 5 new repos

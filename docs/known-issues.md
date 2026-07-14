@@ -221,6 +221,59 @@ error, just an indefinite hang. **Fix:** add a timeout (e.g. `AbortSignal.timeou
 and surface a clear error on expiry.
 Status: OPEN.
 
+## Security red-team — 2026-07-13 (session 15.1, read-only + benign prod probes)
+New findings from the standing red-team (dir 15). Full threat model, per-surface
+checklist, and fix-task map in `docs/security.md` §5. The three 6.1 items it
+re-verified (#1 media path traversal, #7 /verify-endpoint SSRF, #11 fake claim
+verify) are already filed above — the SSRF was confirmed **live** on prod
+(unauthenticated GET of `https://example.com` returned `is_active:true`). New items
+below.
+
+### 🟠 N1. Rate-limit bypass via spoofed `X-Forwarded-For`
+`api/app/api/routes/claims.py:23` keys the 5/min/IP `/claim` limiter on
+`request.headers.get("x-forwarded-for", …).split(",")[0]` — the **first** XFF
+value, which is client-controlled: nginx appends the real IP via
+`$proxy_add_x_forwarded_for` (`deploy/nginx/api.tetapi.dev.conf:13`), so a caller
+supplying its own `X-Forwarded-For` sits in front of it. Rotating the header
+evades the limit entirely, defeating abuse control on the public unauth waitlist
+endpoint (spam / position stuffing). **Fix (1.9):** key on `X-Real-IP` (nginx sets
+it from `$remote_addr`) or the *last* XFF hop, not the first.
+Status: OPEN.
+
+### 🟡 N2. `/docs` + `/openapi.json` publicly reachable in production
+`api/app/main.py:19-24` constructs `FastAPI(...)` without `docs_url=None` /
+`openapi_url=None`, so Swagger UI and the raw OpenAPI schema are served in prod
+(confirmed live: both HTTP 200). Discloses the entire route surface, including
+admin paths, to anonymous callers — reconnaissance aid. **Fix (1.9):** disable
+`docs_url`/`redoc_url`/`openapi_url` when `environment=="production"`.
+Status: OPEN.
+
+### 🟡 N3. CORS default allowlist includes localhost with credentials
+`api/app/core/config.py:44-50` defaults `cors_origins` to include
+`http://localhost:3000/3001`, and `main.py:26-32` pairs the list with
+`allow_credentials=True`. `cors_origins` is not among the server `.env` secrets
+(`docs/deployment.md`), so prod may be running the dev default with localhost
+trusted. Low real-world risk (explicit allowlist, not `*`), but localhost should
+not be a trusted origin in production. **Fix (1.9):** prod-scope the origin list.
+Status: OPEN.
+
+### 🟡 N4. `pk_live_` prefix shared by user keys and device keys
+Personal API keys (`get_current_user`, `api/app/api/deps.py:22`) and device keys
+(`api/app/api/routes/media.py:349`, `f"pk_live_{token}"`) share the `pk_live_`
+prefix but live in different tables/columns and are looked up separately, so they
+do **not** currently cross-authenticate. Flagged as a namespace collision that
+invites a future confused-deputy bug if a lookup is ever broadened. **Fix:**
+distinct prefixes (e.g. `pk_live_` vs `dk_live_`) when convenient.
+Status: OPEN (low).
+
+### 🟡 N5. No production guard on default secrets
+`api/app/core/config.py:8,22`: `secret_key` defaults to
+`"dev-secret-key-change-in-production"` and `pii_encryption_key` to `""`. Prod
+`.env` sets both (mitigated today), but nothing fails startup if a misdeploy runs
+with the defaults — which would silently ship forgeable JWTs / unencrypted PII.
+**Fix (1.9):** assert non-default secrets when `environment=="production"`.
+Status: OPEN (defense-in-depth).
+
 ## 🔴 Profile "My Page" does not persist blocks to the backend
 `web/src/app/profile/page.tsx` uses `useProfileStore` (zustand) which had **no
 persist middleware and made no API calls to save blocks**. Consequences (past):
