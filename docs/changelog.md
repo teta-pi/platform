@@ -6,6 +6,34 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-14 · manager · three owner decisions — WP free launch, legal form, GTM roles
+Done: owner made three decisions after the GTM/WordPress/legal-structure
+discussion. (1) **GTM working pattern confirmed**: for owner-only steps
+(external accounts, DNS, public posting) the session prepares the artifact,
+owner reviews and executes/publishes himself — matches the existing
+Explicit-permission convention, no process change needed. (2) **WordPress
+launches 100% free, no payment code** — premium ($25/$52 packs) becomes
+"coming soon" teaser copy only; a small promo-unlock code mechanic lets
+premium be GIFTED (not sold) to early users / for a social action, removing
+all payment/legal complexity from 12.2. Actual wp.org submission split into
+new **12.3** (owner-executed). (3) **Legal form is the owner's own separate
+step** — he will personally register as Einzelunternehmer or a small UG in
+Germany once real users appear; nothing is sold today, so no business
+registration blocks anything here; brand is shown as a company name without
+claiming a legal entity status that doesn't exist yet.
+Also found (manager, live-checked): **`mcp/server.json` is stale** —
+`repository.url` still points at the retired `teta-pi/platform` mono
+(pre-5.3-split path) and `version` reads 1.3.1 vs. the shipped 1.4.0. This
+blocks any GTM Phase 0 registry submission with wrong metadata — new task
+**2.6**, marked 🔴 blocking.
+Changed: `docs/roadmap.md` (12.2 rescoped free-launch, new 12.3 submission
+task, new 2.6 registry-readiness task, 13.2 rescoped to launch-materials
+drafting only).
+Risk: none — docs only.
+Next: boot 12.2, 2.6, 13.2 — the three highest-priority sessions right now.
+
+---
+
 ## 2026-07-14 · github · 7.2 finalized all 9 repo descriptions + READMEs post-split
 Done: GitHub-metadata + README pass across the full org.
 - Real `description` + `homepageUrl` + `topics` set on `api`/`web`/`mcp`/`landing`
