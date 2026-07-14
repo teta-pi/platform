@@ -47,7 +47,9 @@ Before touching code, read the docs relevant to your task — not the whole repo
 - **Admin/support endpoints go through `require_admin`** and must write an
   `admin_audit_log` entry.
 - Commits: end message with `Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>`.
-  Author email is the GitHub noreply so activity shows on the user's account.
+  Author email is `tetakta@gmail.com` (owner's primary, verified GitHub email —
+  set 2026-07-14, owner's explicit call; was the GitHub noreply address before,
+  switched away from that for a single unified author identity across repos).
 - Deploy is automatic on push to `main` (GitHub Actions). Verify on prod after.
 
 ## Changelog format (end of each task, in your final message)
