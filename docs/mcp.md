@@ -4,7 +4,8 @@ TypeScript server exposing TETA+PI to AI agents via the Model Context Protocol.
 Source: `mcp/src/index.ts` (tools + HTTP bootstrap) + `mcp/src/client.ts` (API
 client, 15s timeout per call). Tool handlers are stateless — every call hits
 `api.tetapi.dev` over HTTP. Deployed as systemd `tetapi-mcp` on port 3002,
-public at `mcp.tetapi.dev`. **Version 1.3.1.**
+public at `mcp.tetapi.dev`. **Version 1.5.0.** Lives in its own repo,
+`teta-pi/mcp` (split from the platform mono 2026-07-13).
 
 ## Transport & manifest
 - HTTP + SSE via `@modelcontextprotocol/sdk` `StreamableHTTPServerTransport`,
@@ -64,16 +65,32 @@ found the deployed server unusable for more than one client at a time:
   (`SERVER_VERSION`), the `/.well-known/mcp` manifest, and both `agent.json`
   files.
 
+## 2.6 registry readiness (2026-07-14)
+- `server.json` `repository.url` fixed to `teta-pi/mcp` (no `subfolder` — the
+  repo lives at root post-5.3-split) and its `version` synced to
+  `SERVER_VERSION`.
+- All 7 `teta_*` tool descriptions rewritten agent-query-shaped, per the GTM
+  plan's own example — behaviour/schema unchanged.
+- `proof_url` added to the 6 tools that lacked it (`teta_search`,
+  `teta_verify_entity`, `teta_verify_claim`, `teta_get_proof`,
+  `teta_get_profile`, `teta_verify_endpoint`) — see the Tools table below.
+  No new API endpoint; no extra network calls.
+- Version bumped **1.4.0 → 1.5.0** (description + output-shape change).
+- Found in passing, not fixed here (backend, different repo now):
+  `teta_resolve_intent`'s shipped `proof_url` (`api/app/api/routes/intent.py:76`)
+  uses the entity slug against a route that requires a UUID — dead link since
+  `2.1`. See `docs/known-issues.md`.
+
 ## Tools (7)
-| Tool | Purpose | Backend |
-|---|---|---|
-| `teta_search` | search verified entities by name/type/country | `/search` |
-| `teta_verify_entity` | full verified profile + registry attestation | `/businesses/{id}/preview` |
-| `teta_verify_endpoint` | confirm a domain/endpoint belongs to a verified entity | `/verify-endpoint` |
-| `teta_get_proof` | raw cryptographic proof (registry hash, C2PA, BTC OTS) **+ proof depth** (`ots_status`, `btc_timestamp_depth`, `c2pa_chain_length`, `event_count`) so agents set their own trust threshold | `/businesses/{id}/proof` |
-| `teta_resolve_intent` | **flagship** — TWIRA-ranked routing; full T/I/P breakdown, `first_verified_at`, `proof_url`; filters `entity_types` + `min_trust` | `/resolve-intent` |
-| `teta_get_profile` | public profile + public blocks (split from verify) | `/businesses/{id}/preview` |
-| `teta_verify_claim` | check a claim against an entity's verified blocks | `/businesses/{id}/preview` |
+| Tool | Purpose | Backend | proof_url |
+|---|---|---|---|
+| `teta_search` | search verified entities by name/type/country | `/search` | `app.tetapi.dev/e/{slug}` per result |
+| `teta_verify_entity` | full verified profile + registry attestation | `/businesses/{id}/preview` | `api.tetapi.dev/api/v1/businesses/{id}/proof` |
+| `teta_verify_endpoint` | confirm a domain/endpoint belongs to a verified entity | `/verify-endpoint` | same, only when `entity_id` is a UUID |
+| `teta_get_proof` | raw cryptographic proof (registry hash, C2PA, BTC OTS) **+ proof depth** (`ots_status`, `btc_timestamp_depth`, `c2pa_chain_length`, `event_count`) so agents set their own trust threshold | `/businesses/{id}/proof` | same |
+| `teta_resolve_intent` | **flagship** — TWIRA-ranked routing; full T/I/P breakdown, `first_verified_at`, `proof_url`; filters `entity_types` + `min_trust` | `/resolve-intent` | backend-supplied (see 2.6 note above — currently broken) |
+| `teta_get_profile` | public profile + public blocks (split from verify) | `/businesses/{id}/preview` | `api.tetapi.dev/api/v1/businesses/{id}/proof` |
+| `teta_verify_claim` | check a claim against an entity's verified blocks | `/businesses/{id}/preview` | `api.tetapi.dev/api/v1/businesses/{id}/proof` |
 
 **Proof depth** (`teta_get_proof` → `proof_depth`) is read straight from
 `verification_events` (the Temporal Moat) — no new tables or workers:
@@ -87,9 +104,13 @@ found the deployed server unusable for more than one client at a time:
 - `event_count` — total verification events for the entity.
 
 Keep `teta_*` names stable — agents depend on them. The two `.well-known/agent.json`
-files (landing `landing/.well-known/agent.json` and app
-`web/src/app/.well-known/agent.json/route.ts`) advertise the tool list and must be
-kept in sync with the manifest.
+files advertise the tool list and must be kept in sync with the manifest — as
+of the 5.3 split they no longer live in this repo: landing's is in
+`teta-pi/landing` (`.well-known/agent.json`), app's is in `teta-pi/web`
+(`src/app/.well-known/agent.json/route.ts`). This repo can't bump them
+directly; flag the owning repo/session when `mcp`'s version or tool list
+changes (as of 2.6, both are still on the pre-1.5.0 tool list/descriptions —
+open follow-up).
 
 ## Build & deploy
 - Local build: `cd mcp && npx tsc` → `mcp/dist/`.

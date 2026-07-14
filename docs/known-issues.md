@@ -432,3 +432,15 @@ Status: OPEN (needs licence key).
 - Append-only triggers verified live (DELETE/illegal UPDATE rejected).
 - Admin endpoints gated by `require_admin` and audited.
 - Registry search stable (WumWam 5/5, ranking by similarity correct).
+
+### 🔴 `teta_resolve_intent`'s shipped `proof_url` is a dead link
+Found 2026-07-14 during 2.6 (MCP registry readiness). `api/app/api/routes/intent.py:76`
+builds `proof_url=f"https://api.tetapi.dev/api/v1/businesses/{r['entity'].slug}/proof"` —
+using the entity **slug**, while the target route (`api/app/api/routes/businesses.py:515`,
+`GET /businesses/{business_id}/proof`) declares `business_id: uuid.UUID`, so FastAPI
+422s on a non-UUID slug. Same file's `entity_id` field (line 65) correctly uses
+`r["entity"].id`. This has shipped since `2.1` (2026-07-12) — every `proof_url` the
+flagship `teta_resolve_intent` MCP tool has returned is unclickable. **Fix:** swap
+`.slug` → `.id` on line 76 (`api/`, out of scope for the `2.6 mcp` session — needs a
+backend session).
+Status: OPEN.
