@@ -6,6 +6,43 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-14 · github · 7.2 finalized all 9 repo descriptions + READMEs post-split
+Done: GitHub-metadata + README pass across the full org.
+- Real `description` + `homepageUrl` + `topics` set on `api`/`web`/`mcp`/`landing`
+  (replacing the shared cutover placeholder) and `infra` (docs+deploy, no
+  homepage), matching current landing positioning (Digital Entities, no GmbH,
+  no hero money language).
+- `platform` description now reads "⚠ Retired 2026-07-13 — split into
+  teta-pi/{api,web,mcp,landing,infra}"; README gets a matching retired banner
+  and the false "Live: tetapi.dev" line is dropped.
+- Found `api`/`web`/`mcp`/`landing` had **no README.md at all** post-5.3-split
+  (only the thin `CLAUDE.md` pointer) — wrote real ones for each. Rewrote
+  `infra/README.md`, which still described the pre-split monorepo folder
+  layout as if code lived there.
+- Decided the fate of the 3 pre-existing placeholder repos (`pi-camera`,
+  `mcp-server`, `protocol` — 5.4 backlog item, 2 commits each, README/LICENSE
+  only, predate this process): **archived all 3** (cleanest option — their
+  names collide with the real `mcp`/camera-integration work and they carry no
+  live code). Added an owner-facing archive notice to each README before
+  archiving, noting the superseding repo.
+- Rewrote the `.github` org profile: was listing the 3 now-archived
+  placeholder repos instead of the 5 live ones, and gave a connect URL
+  (`tetapi.dev/mcp`) that never existed — fixed to `mcp.tetapi.dev/sse`.
+  Dropped a stray "Berlin, Germany" location line (10.2 already removed
+  company-positioning claims from public copy).
+- Per-repo README changes landed via that repo's own PR (branch-protected:
+  `api`#2, `web`#3, `mcp`#2, `landing`#2, `infra`#1, `platform`#47 —
+  `required_approving_review_count: 0` so no external review blocked
+  merging). `pi-camera`/`mcp-server`/`protocol`/`.github` have no branch
+  protection — pushed directly.
+Changed: GitHub repo settings (9 repos), `README.md` in 9 repos, this
+worktree's `docs/roadmap.md` (7.2 → done).
+Risk: none — metadata + docs only, no deploy-affecting code touched.
+Next: 7.3 commit attribution audit; 5.4(a) archive `platform` itself once a
+few more green deploy cycles land from the new pipelines (still gated).
+
+---
+
 ## 2026-07-14 · 1.6 + 1.7 backend · close two live unauth vulnerabilities
 Done: fixed both 🔴 findings the 15.1 red-team confirmed live on prod the same
 day. **1.6** — `GET /media/local/{file_id}/{filename}` had no path containment;
@@ -51,6 +88,8 @@ traversal (#1) remain open on prod until 1.6/1.7 ship. Prod probing stayed withi
 RoE (benign single requests, no exfiltration).
 Next: backend picks up 1.6 + 1.7 (highest priority — both live + unauthenticated);
 15.2 adds the `security.yml` CI workflow.
+
+---
 
 ## 2026-07-13 · manager · 7.2 rescoped — repo descriptions need a real pass post-split
 Done: owner asked whether the github direction should finalize every repo's
