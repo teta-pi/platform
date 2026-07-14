@@ -16,7 +16,8 @@ directories above `UPLOAD_DIR` (e.g. `file_id=".."`, `filename=".."` plus a
 known filename) with zero authentication. **Fix:** resolve the path and verify
 it's still inside `_UPLOAD_DIR` (`path.resolve().is_relative_to(_UPLOAD_DIR.resolve())`),
 reject otherwise.
-Status: OPEN.
+Status: **FIXED 2026-07-14** (roadmap 1.6, `teta-pi/api` PR #3) — exactly the
+recommended fix applied, live-verified on prod.
 
 ### 🔴 2. MCP `teta_resolve_intent` returns a slug as `entity_id`, but every other tool requires a UUID
 `api/app/api/routes/intent.py:65` and `api/app/intent_graph/resolver.py:98` both
@@ -89,7 +90,11 @@ URL matches that business's *already-declared* `agent_endpoint` — it can't
 redirect someone else's business to an attacker URL.) **Fix:** at minimum rate
 limit / require auth for the SSRF-prone fetch even if the flip-to-verified path
 stays open.
-Status: OPEN.
+Status: **FIXED 2026-07-14** (roadmap 1.7, `teta-pi/api` PR #3) — gated behind
+`Depends(get_current_user)`. Live pre-fix repro confirmed the SSRF (unauth GET
+of `https://example.com` returned `is_active:true`); post-fix the same call
+returns 401. No frontend change needed — `endpointApi.verify` had zero UI
+call sites (see #12 below), so auth-gating broke nothing live.
 
 ### 🟠 8. `GET /businesses/{id}` and `GET /businesses` (list) write to the DB on every read
 `_compute_verification_level` is called and assigned onto the ORM object in
