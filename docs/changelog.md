@@ -6,6 +6,21 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-13 · manager · 7.2 rescoped — repo descriptions need a real pass post-split
+Done: owner asked whether the github direction should finalize every repo's
+description after the 5.3 split. Checked live state: all 5 new repos
+(`api`/`web`/`mcp`/`landing`/`infra`) carry the same placeholder description I
+set during cutover, no `homepageUrl`, no topics; the retired `platform` mono
+still reads as if it's the live product; the 3 pre-existing placeholder repos
+(`pi-camera`/`mcp-server`/`protocol`, flagged in 5.4) now collide in naming
+intent with real code repos. Rewrote 7.2 to cover all 9 repos + `.github` org
+profile in one pass instead of the old single-repo-era scope.
+Changed: `docs/roadmap.md` (7.2 rewritten, ready to boot).
+Risk: none — docs only.
+Next: boot 7 github · 7.2.
+
+---
+
 ## 2026-07-13 · 5.3 devops · monorepo → 5 repos, executed live — MERGE FREEZE LIFTED
 Done: executed the approved 5.2 plan (`docs/decisions.md`). Created
 `teta-pi/{api,web,mcp,landing,infra}`; extracted each with `git filter-repo`
