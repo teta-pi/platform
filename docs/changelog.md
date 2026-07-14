@@ -6,6 +6,28 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-14 · 1.6 + 1.7 backend · close two live unauth vulnerabilities
+Done: fixed both 🔴 findings the 15.1 red-team confirmed live on prod the same
+day. **1.6** — `GET /media/local/{file_id}/{filename}` had no path containment;
+added `resolve()` + `is_relative_to(_UPLOAD_DIR)` before serving. **1.7 (SSRF
+sub-item only)** — `POST /verify-endpoint` had zero auth and performed a blind
+server-side fetch of any caller-supplied URL; gated behind
+`Depends(get_current_user)` (JWT or `pk_live_`). Both pre-fix repro'd live
+(SSRF: unauth `example.com` fetch returned `is_active:true`) and post-fix
+re-verified (SSRF now 401; media route still serves cleanly). No frontend
+change needed — `endpointApi.verify` has zero UI call sites today.
+Changed: `teta-pi/api` `app/api/routes/media.py`, `app/api/routes/endpoint_verification.py`
+(PR #3, squash-merged, live-deployed same session); `docs/known-issues.md`
+(#1, #7 → FIXED); `docs/roadmap.md` (1.6 done; 1.7 narrowed to its remaining
+#6 + #13 sub-items).
+Risk: none observed — both fixes match the audit's own recommended remediation
+exactly, verified live, no regressions on health checks or the media/verify
+routes' legitimate paths.
+Next: 1.7's remaining scope (#6 `agent_endpoint_verified` reset on PATCH, #13
+Redis `GETDEL` race) still open, lower severity, batchable with 1.14.
+
+---
+
 ## 2026-07-13 · 15.1 security · threat model + standing red-team
 
 Done: wrote `docs/security.md` — full threat model (assets, trust boundaries,
