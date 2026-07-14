@@ -6,6 +6,24 @@ using the `Done / Changed / Risk / Next` block (see `CLAUDE.md`).
 
 ---
 
+## 2026-07-15 · 1 backend · 1.16 verify registry-free payload
+Done: verification pass on `teta-pi/api` (no rebuild) confirming task 1.3's
+decoupling is fully correct and live. `BusinessCreate` (`app/schemas/business.py`)
+has only `name`/`description`/`country`/`entity_type` — no registry field exists
+anywhere in the schema, optional or otherwise. `POST /businesses`
+(`app/api/routes/businesses.py`) creates immediately at `registry_status=
+"unverified"`, no registry call in the creation path; registry match is now
+explicit and owner-triggered via `POST /{id}/verify/registry`. `ClaimCreate`
+(`app/schemas/claim.py`) — `email`/`entity_type`/`ready_to_pay`/`source` — was
+never registry-dependent either. Cross-checked both schemas against prod's live
+`/openapi.json` (api.tetapi.dev) — matches the repo exactly.
+Changed: no code changes; docs-only confirmation entry.
+Risk: none — no behavior touched.
+Next: 3.4 (verification methods chooser UI) and 3.7 (registry-free claim flow)
+can proceed against this API as-is.
+
+---
+
 ## 2026-07-14 · 2 mcp · 2.6 registry submission readiness
 Done: `mcp/server.json` `repository.url` fixed (`teta-pi/platform` + `subfolder:
 "mcp"` → `teta-pi/mcp`, no subfolder — the repo has lived at root since the
